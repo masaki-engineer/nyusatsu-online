@@ -88,6 +88,7 @@ cursor: pointer;
 function Header() {
   return (
     <Navbar>
+
       <LogoAndSearch>
         <img src={LogoImg}  alt="ロゴ" width="292.5" height="67.5" />
         <SearchBox>
@@ -100,6 +101,7 @@ function Header() {
           </SearchButton>
         </SearchBox>
       </LogoAndSearch>
+
       <UserNav>
         <MunicipalityNav>
           自治体の方はコチラ
@@ -115,6 +117,7 @@ function Header() {
           </Link>
         </SignUpOrIn>
       </UserNav>
+
       <UserNav>
         <CompanyNav>
           企業の方はコチラ
@@ -130,6 +133,7 @@ function Header() {
           </Link>
         </SignUpOrIn>
       </UserNav>
+      
     </Navbar>
   )
 }
