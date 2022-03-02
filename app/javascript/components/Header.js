@@ -24,6 +24,7 @@ const SearchBox = styled.div`
 display: flex;
 height: 45px;
 width: calc(100% - 30px);
+max-width: 700px;
 margin-left: 30px;
 margin-right: 20px;
 border: solid 3px #0056A6;
