@@ -94,7 +94,9 @@ function Header() {
     <Navbar>
 
       <LogoAndSearch>
-        <img src={LogoImg}  alt="ロゴ" width="234" height="54" />
+        <Link to="#">
+          <img src={LogoImg}  alt="ロゴ" width="234" height="54" />
+        </Link>
         <SearchBox>
           <SearchForm
             type="text"
