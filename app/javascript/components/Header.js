@@ -6,25 +6,27 @@ import { AiOutlineSearch } from 'react-icons/ai'
 
 const Navbar = styled.header`
 background: #ffffff;
-height: 120px;
+height: 90px;
 display: flex;
 align-items: center;
+border-bottom: solid 1px gray;
 `
 
 const LogoAndSearch = styled.div`
-width: calc(100vw - 360px);
-height: 100%;
+width: calc(100vw - 270px);
+min-width: 830px;
 display: flex;
 align-items: center;
-padding-left: 30px;
-border-bottom: solid 1px gray;
+padding: 0 30px;
 `
 
 const SearchBox = styled.div`
 display: flex;
-height: 60px;
-margin-left: 45px;
-border: solid 4px #0056A6;
+height: 45px;
+width: calc(100% - 30px);
+margin-left: 30px;
+margin-right: 20px;
+border: solid 3px #0056A6;
 border-top-left-radius: 10px;
 border-bottom-left-radius: 10px;
 border-top-right-radius: 10px;
@@ -32,56 +34,57 @@ border-bottom-right-radius: 10px;
 `
 
 const SearchForm = styled.input`
-font-size: 20px;
-width: 600px;
-padding: 20px;
+font-size: 15px;
+width: 100%;
+padding: 15px;
 border-top-left-radius: 10px;
 border-bottom-left-radius: 10px;
 border: none;
 ` 
 const SearchButton = styled.button`
 background: #0056A6;
-font-size: 40px;
+font-size: 30px;
 color: #ffffff;
-width: 80px;
-padding: 7px;
+width: 60px;
+padding: 6px;
 border: none;
 cursor: pointer;
 `
 
 const UserNav = styled.div`
-width: 180px;
+min-width: 135px;
 height: 100%;
 `
 
 const MunicipalityNav = styled.div`
 background: linear-gradient(#6b8e23, #556b2f);
 color: #ffffff;
-font-size: 18px;
+font-size: 13px;
 text-align: center;
 width: 100%;
 height: 40%;
-padding-top: 10px;
+padding-top: 7px;
 `
 
 const CompanyNav = styled.div`
 background: linear-gradient(#d2691e, #a0522d);
 color: #ffffff;
-font-size: 18px;
+font-size: 13px;
 text-align: center;
 width: 100%;
 height: 40%;
-padding-top: 10px;
+padding-top: 7px;
 `
 
 const SignUpOrIn = styled.div`
 background: linear-gradient(#ffffff, #f5f5f5);
-font-size: 16px;
+font-size: 12px;
 text-align: center;
 width: 100%;
 height: 30%;
-padding-top: 6px;
-border: solid 1px gray;
+padding-top: 4px;
+border-top: solid 1px gray;
+border-left: solid 1px gray;
 cursor: pointer;
 `
 
@@ -90,7 +93,7 @@ function Header() {
     <Navbar>
 
       <LogoAndSearch>
-        <img src={LogoImg}  alt="ロゴ" width="292.5" height="67.5" />
+        <img src={LogoImg}  alt="ロゴ" width="234" height="54" />
         <SearchBox>
           <SearchForm
             type="text"
@@ -133,7 +136,7 @@ function Header() {
           </Link>
         </SignUpOrIn>
       </UserNav>
-      
+
     </Navbar>
   )
 }
