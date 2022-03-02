@@ -4,12 +4,13 @@ import styled from 'styled-components'
 import './App.css'
 
 import Header from './Header'
+import TopPage from './TopPage'
 
 function App() {
   return (
     <>
       <Header/>
-      Hello React! Hello React! Hello React! Hello React!
+      <TopPage/>
     </>
   )
 }
