@@ -79,6 +79,7 @@ padding-top: 7px;
 
 const SignUpOrIn = styled.div`
 background: linear-gradient(#ffffff, #f5f5f5);
+color: #696969;
 font-size: 12px;
 text-align: center;
 width: 100%;
@@ -112,32 +113,32 @@ function Header() {
         <MunicipalityNav>
           自治体の方はコチラ
         </MunicipalityNav>
-        <SignUpOrIn>
-          <Link to="#">
+        <Link to="#">
+          <SignUpOrIn>
             会員登録
-          </Link>
-        </SignUpOrIn>
-        <SignUpOrIn>
-          <Link to="#">
+          </SignUpOrIn>
+        </Link>
+        <Link to="#">
+          <SignUpOrIn>
             ログイン
-          </Link>
-        </SignUpOrIn>
+          </SignUpOrIn>
+        </Link>
       </UserNav>
 
       <UserNav>
         <CompanyNav>
           企業の方はコチラ
         </CompanyNav>
-        <SignUpOrIn>
-          <Link to="#">
+        <Link to="#">
+          <SignUpOrIn>
             会員登録
-          </Link>
-        </SignUpOrIn>
-        <SignUpOrIn>
-          <Link to="#">
+          </SignUpOrIn>
+        </Link>
+        <Link to="#">
+          <SignUpOrIn>
             ログイン
-          </Link>
-        </SignUpOrIn>
+          </SignUpOrIn>
+        </Link>
       </UserNav>
 
     </Navbar>
