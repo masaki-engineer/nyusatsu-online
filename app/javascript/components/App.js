@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import './App.css'
 
 import Header from './Header'
+import Footer from './Footer'
 import TopPage from './TopPage'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <>
       <Header/>
       <TopPage/>
+      <Footer/>
     </>
   )
 }
