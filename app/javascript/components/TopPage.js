@@ -16,12 +16,12 @@ margin: 0 auto;
 const TopContents = styled.div`
 background: #ffffff;
 width: 100%;
+padding: 10px 0;
 display: flex;
 `
 
 const SideBar = styled.div`
 width: 300px;
-margin-top: 10px;
 border-right: solid 1px gray;
 `
 
