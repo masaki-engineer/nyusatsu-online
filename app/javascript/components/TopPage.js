@@ -61,21 +61,50 @@ margin: 20px;
 `
 
 const BottomContents = styled.div`
-`
-
-const Contact = styled.div`
+background: linear-gradient(to bottom right, #244a6f, #072542);
+width: 100%;
+height: 400px;
+padding: 50px;
+display: flex;
 `
 
 const PCImage = styled.div`
+background: gray;
+width: 500px;
+height: 300px;
+margin-right: 50px;
+`
+
+const Contact = styled.div`
+width: 550px
 `
 
 const Copy = styled.div`
+color: #ffffff;
+font-size: 30px;
+font-weight: bold;
+margin-bottom: 20px;
 `
 
 const Sentence = styled.div`
+color: #ffffff;
+font-size: 14px;
+margin-bottom: 30px;
 `
 
 const ContactButton = styled.button`
+background: #3cb371;
+border: none;
+color: #ffffff;
+font-size: 20px;
+width: 300px;
+height: 60px;
+border-radius: 5px;
+padding: 10px;
+transition: 0.5s;
+:hover {
+  background: #66cdaa;
+}
 `
 
 function TopPage() {
@@ -207,11 +236,13 @@ function TopPage() {
             入札を全てオンライン化しませんか？
           </Copy>
           <Sentence>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
           </Sentence>
-          <ContactButton>
-            <Link to="#">お問い合わせ</Link>
-          </ContactButton>
+          <Link to="#">
+            <ContactButton>
+              お問い合わせ
+            </ContactButton>
+          </Link>
         </Contact>
       </BottomContents>
 
