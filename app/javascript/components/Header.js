@@ -19,6 +19,9 @@ display: flex;
 align-items: center;
 padding: 0 30px;
 `
+const LogoImgBox = styled.img`
+width: 234px;
+`
 
 const SearchBox = styled.div`
 display: flex;
@@ -95,7 +98,7 @@ function Header() {
 
       <LogoAndSearch>
         <Link to="#">
-          <img src={LogoImg}  alt="ロゴ" width="234" height="54" />
+          <LogoImgBox src={LogoImg} />
         </Link>
         <SearchBox>
           <SearchForm
