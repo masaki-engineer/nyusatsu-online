@@ -45,7 +45,7 @@ margin: 10px;
 `
 
 const Areas = styled.div`
-width: 800px;
+width: 880px;
 margin: 20px;
 border-top: solid 1px #a9a9a9;
 border-right: solid 1px #a9a9a9;
@@ -53,6 +53,8 @@ border-left: solid 1px #a9a9a9;
 `
 
 const Projects = styled.div`
+width: 880px;
+margin: 20px;
 `
 
 const BottomContents = styled.div`
@@ -86,13 +88,27 @@ function TopPage() {
   const projects = [
     {
       id: 1,
-      name: "テスト案件の募集だなり〜",
+      name: "テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜",
       category: "運輸・物流",
       createDate: "2022/02/28",
       bidDate: "2022/3/31",
       municipality: "福岡市"
     }, {
       id: 2,
+      name: "テスト案件の募集だなり〜２",
+      category: "オフィス機器・PC・事務用品全般",
+      createDate: "2022/02/26",
+      bidDate: "2022/3/15",
+      municipality: "大阪市"
+    }, {
+      id: 3,
+      name: "テスト案件の募集だなり〜２",
+      category: "オフィス機器・PC・事務用品全般",
+      createDate: "2022/02/26",
+      bidDate: "2022/3/15",
+      municipality: "大阪市"
+    }, {
+      id: 4,
       name: "テスト案件の募集だなり〜２",
       category: "オフィス機器・PC・事務用品全般",
       createDate: "2022/02/26",
