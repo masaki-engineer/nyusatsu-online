@@ -21,24 +21,25 @@ text-align: center;
 `
 
 const Prefectures = styled.ul`
+width: 650px;
 display: flex;
 padding-left: 30px;
 display: flex;
 `
 
 const Prefecture = styled.a`
-margin: 13px 20px auto 0;
+margin: 15px 20px auto 0;
 display: flex;
 `
 
 const RightSign = styled.div`
-font-size: 18px;
-margin: auto 5px auto 0;
+font-size: 17px;
+margin: auto 3px auto 0;
 color: #0056A6;
 `
 
 const Name = styled.li`
-font-size: 16px;
+font-size: 14px;
 list-style: none;
 `
 
