@@ -58,7 +58,7 @@ height: 100%;
 `
 
 const MunicipalityNav = styled.div`
-background: linear-gradient(#6b8e23, #556b2f);
+background: #072542;
 color: #ffffff;
 font-size: 13px;
 text-align: center;
@@ -68,7 +68,7 @@ padding-top: 7px;
 `
 
 const CompanyNav = styled.div`
-background: linear-gradient(#d2691e, #a0522d);
+background: #52677b;
 color: #ffffff;
 font-size: 13px;
 text-align: center;
@@ -79,7 +79,6 @@ padding-top: 7px;
 
 const SignUpOrIn = styled.div`
 background: linear-gradient(#ffffff, #f5f5f5);
-color: #696969;
 font-size: 12px;
 text-align: center;
 width: 100%;
