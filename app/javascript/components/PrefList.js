@@ -30,6 +30,9 @@ display: flex;
 const Prefecture = styled.a`
 margin: 15px 20px auto 0;
 display: flex;
+:hover {
+  opacity: 0.5;
+}
 `
 
 const RightSign = styled.div`

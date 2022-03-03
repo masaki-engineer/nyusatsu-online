@@ -33,6 +33,9 @@ const CategoryList = styled.li`
 font-size: 14px;
 margin: 10px 0;
 list-style: none;
+:hover {
+  opacity: 0.5;
+}
 `
 
 const Content = styled.div`

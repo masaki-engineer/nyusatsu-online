@@ -13,7 +13,7 @@ padding: 20px;
 transition: 0.5s;
 :hover {
   background: #ffefd5;
-  }
+}
 `
 
 const Name = styled.div`
