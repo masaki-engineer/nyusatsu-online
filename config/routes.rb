@@ -4,15 +4,21 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      mount_devise_token_auth_for 'Municipality', at: 'auth', controllers: {
-        registrations: 'api/v1/auth/registrations'
+
+      mount_devise_token_auth_for 'Municipality', at: 'municipality', controllers: {
+        registrations: 'api/v1/municipality/registrations'
       }
-      mount_devise_token_auth_for 'Company', at: 'auth', controllers: {
-        registrations: 'api/v1/auth/registrations'
-      }
-      namespace :auth do
+      namespace :municipalit do
         resources :sessions, only: [:index]
       end
+
+      mount_devise_token_auth_for 'Company', at: 'company', controllers: {
+        registrations: 'api/v1/company/registrations'
+      }
+      namespace :company do
+        resources :sessions, only: [:index]
+      end
+      
     end
   end
 
