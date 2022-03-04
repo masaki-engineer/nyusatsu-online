@@ -7,7 +7,7 @@ class DeviseTokenAuthCreateMunicipalities < ActiveRecord::Migration[6.1]
       t.string :uid, :null => false, :default => ""
 
       ## Database authenticatable
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -29,10 +29,16 @@ class DeviseTokenAuthCreateMunicipalities < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name
-      t.string :nickname
-      t.string :image
-      t.string :email
+      t.string :name,                  null: false
+      t.string :email,                 null: false, unique: true, default: ""
+      t.string :postal_code,           null: false
+      t.integer :prefecture_id,        null: false
+      t.string :city,                  null: false
+      t.string :addresses,             null: false
+      t.string :building
+      t.string :phone_number,          null: false
+      t.integer :municipality_type_id, null: false
+      t.string :home_page_url,         null: false
 
       ## Tokens
       t.text :tokens
