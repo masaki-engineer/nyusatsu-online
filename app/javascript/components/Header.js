@@ -97,7 +97,7 @@ function Header() {
     <Navbar>
 
       <LogoAndSearch>
-        <Link to="#">
+        <Link to="/">
           <LogoImgBox src={LogoImg} />
         </Link>
         <SearchBox>
@@ -115,7 +115,7 @@ function Header() {
         <MunicipalityNav>
           自治体の方はコチラ
         </MunicipalityNav>
-        <Link to="#">
+        <Link to="/municipality/sign_up">
           <SignUpOrIn>
             会員登録
           </SignUpOrIn>
