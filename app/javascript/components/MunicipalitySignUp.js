@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { signIn } from "./src/lib/api/municipality"
+import { signUp } from "./src/lib/api/municipality"
 import UnderlineText from './UnderlineText'
 import prefectures from './src/data/prefectures'
 
@@ -103,6 +103,31 @@ function MunicipalitySignUp() {
 
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const res = await signUp(form)
+      console.log(res)
+
+      if (res.status === 200) {
+        // アカウント作成と同時にログイン
+        // Cookies.set("_access_token", res.headers["access-token"])
+        // Cookies.set("_client", res.headers["client"])
+        // Cookies.set("_uid", res.headers["uid"])
+
+        // setIsSignedIn(true)
+        // setCurrentUser(res.data.data)
+
+        console.log("Signed in successfully!")
+      } else {
+        console.log("Signed in failed!")
+      }
+    } catch (err) {
+      console.log(err)
+      // setAlertMessageOpen(true)
+    }
   }
 
   return (
@@ -244,7 +269,7 @@ function MunicipalitySignUp() {
         />
       </Row>
 
-      <SubmitButton>登録</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>登録</SubmitButton>
     </Contents>
   )
 }
