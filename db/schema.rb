@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2022_03_04_081342) do
     t.string "addresses", null: false
     t.string "building"
     t.string "phone_number", null: false
-    t.integer "industry_id", null: false
     t.string "home_page_url"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 2022_03_04_081342) do
     t.string "addresses", null: false
     t.string "building"
     t.string "phone_number", null: false
-    t.integer "municipality_type_id", null: false
     t.string "home_page_url", null: false
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false

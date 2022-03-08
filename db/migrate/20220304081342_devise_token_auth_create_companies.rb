@@ -37,7 +37,6 @@ class DeviseTokenAuthCreateCompanies < ActiveRecord::Migration[6.1]
       t.string :addresses,      null: false
       t.string :building
       t.string :phone_number,   null: false
-      t.integer :industry_id,   null: false
       t.string :home_page_url
 
       ## Tokens
