@@ -1,14 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import { signIn } from "./src/lib/api/municipality"
 import UnderlineText from './UnderlineText'
-import Form from './Form'
+import prefectures from './src/data/prefectures'
 
 const Contents = styled.div`
 background: #ffffff;
 width: 1200px;
 padding: 30px 0;
 margin: 0 auto;
+`
+
+const Row = styled.div`
+margin: 30px 20px;
+width: 1100px;
+height: 50px;
+display: flex;
+`
+
+const TitleBox = styled.div`
+width: 350px;
+display: flex;
+margin: auto 0;
+`
+
+const Title = styled.p`
+color: #000000;
+font-weight: bold;
+font-size: 18px;
+margin-right: 10px;
+`
+
+const Required = styled.p`
+background: #ff0000;
+color: #ffffff;
+font-size: 11px;
+text-align: center;
+width: 40px;
+height: 20px;
+border-radius: 3px;
+padding: 2px;
+`
+
+const Optional = styled.p`
+background: #a9a9a9;
+color: #ffffff;
+font-size: 11px;
+text-align: center;
+width: 40px;
+height: 20px;
+border-radius: 3px;
+padding: 2px;
+`
+
+const FormBox = styled.input`
+font-size: 15px;
+width: 100%;
+padding: 15px;
+border-radius: 3px;
+border: solid 1px #a9a9a9;
+`
+
+const SelectBox = styled.select`
+font-size: 15px;
+width: 100%;
+padding: 15px;
+border-radius: 3px;
+border: solid 1px #a9a9a9;
 `
 
 const SubmitButton = styled.button`
@@ -28,77 +87,163 @@ transition: 0.5s;
 `
 
 function MunicipalitySignUp() {
-  const forms = [
-    {
-      title: '自治体名',
-      required: true,
-      type: 'text',
-      placeholder: '自治体名を入力'
-    }, {
-      title: 'メールアドレス',
-      required: true,
-      type: 'text',
-      placeholder: 'メールアドレスを入力'
-    }, {
-      title: 'パスワード',
-      required: true,
-      type: 'text',
-      placeholder: 'パスワードを入力'
-    }, {
-      title: 'パスワード（確認）',
-      required: true,
-      type: 'text',
-      placeholder: 'パスワードを入力'
-    }, {
-      title: '郵便番号',
-      required: true,
-      type: 'text',
-      placeholder: '郵便番号を入力'
-    }, {
-      title: '都道府県',
-      required: true,
-      type: 'text',
-      placeholder: '都道府県を入力'
-    }, {
-      title: '市町村',
-      required: true,
-      type: 'text',
-      placeholder: '市町村を入力'
-    }, {
-      title: '住所',
-      required: true,
-      type: 'text',
-      placeholder: '住所を入力'
-    }, {
-      title: '建物名',
-      required: false,
-      type: 'text',
-      placeholder: '建物名を入力'
-    }, {
-      title: '電話番号',
-      required: true,
-      type: 'text',
-      placeholder: '電話番号を入力'
-    }, {
-      title: 'ホームページURL',
-      required: true,
-      type: 'text',
-      placeholder: 'ホームページURLを入力'
-    }
-  ]
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+    postalCode: "",
+    prefectureId: 0,
+    city: "",
+    addresses: "",
+    building: "",
+    phoneNumber: "",
+    homePageUrl: ""
+  })
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+  }
+
   return (
     <Contents>
       <UnderlineText text={'自治体会員登録'} />
-      {forms.map((val, key) => {
-        return(
-          <Form
-            title={val.title}
-            required={val.required}
-            type={val.type}
-            placeholder={val.placeholder}
-          />
-        )
-      })}
+
+      <Row>
+        <TitleBox>
+          <Title>自治体名</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.name}
+          onChange={handleChange('name')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>メールアドレス</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.email}
+          onChange={handleChange('email')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>パスワード</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.password}
+          onChange={handleChange('password')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>パスワード（確認）</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.passwordConfirmation}
+          onChange={handleChange('passwordConfirmation')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>郵便番号</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.postalCode}
+          onChange={handleChange('postalCode')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>都道府県</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <SelectBox
+          value={form.prefectureId}
+          onChange={handleChange('prefectureId')}
+        >
+          {prefectures.map((val, key) => {
+            return (<option value={key}>{val}</option>)
+          })}
+        </SelectBox>
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>市町村</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.city}
+          onChange={handleChange('city')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>住所</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.addresses}
+          onChange={handleChange('addresses')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>建物名</Title>
+          <Optional>任意</Optional>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.building}
+          onChange={handleChange('building')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>電話番号</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.phoneNumber}
+          onChange={handleChange('phoneNumber')}
+        />
+      </Row>
+      
+      <Row>
+        <TitleBox>
+          <Title>ホームページURL</Title>
+          <Required>必須</Required>
+        </TitleBox>
+        <FormBox
+          type="text"
+          value={form.homePageUrl}
+          onChange={handleChange('homePageUrl')}
+        />
+      </Row>
+
       <SubmitButton>登録</SubmitButton>
     </Contents>
   )
