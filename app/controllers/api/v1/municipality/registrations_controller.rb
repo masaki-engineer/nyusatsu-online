@@ -13,7 +13,6 @@ class Api::V1::Municipality::RegistrationsController < DeviseTokenAuth::Registra
       :addresses,
       :building,
       :phone_number,
-      :municipality_type_id,
       :home_page_url
     )
   end
