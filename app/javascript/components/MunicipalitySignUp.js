@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Cookies from "js-cookie"
 
 import { signUp } from "./src/lib/api/municipality"
 import UnderlineText from './UnderlineText'
@@ -113,9 +114,10 @@ function MunicipalitySignUp() {
 
       if (res.status === 200) {
         // アカウント作成と同時にログイン
-        // Cookies.set("_access_token", res.headers["access-token"])
-        // Cookies.set("_client", res.headers["client"])
-        // Cookies.set("_uid", res.headers["uid"])
+        Cookies.set("_access_token", res.headers["access-token"])
+        Cookies.set("_client", res.headers["client"])
+        Cookies.set("_uid", res.headers["uid"])
+        console.log(Cookies)
 
         // setIsSignedIn(true)
         // setCurrentUser(res.data.data)
