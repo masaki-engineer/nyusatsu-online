@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'Municipality', at: 'municipality', controllers: {
         registrations: 'api/v1/municipality/registrations'
       }
-      namespace :municipalit do
+      namespace :municipality do
         resources :sessions, only: [:index]
       end
 
