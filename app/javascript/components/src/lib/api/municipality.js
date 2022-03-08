@@ -1,4 +1,4 @@
-import client from "lib/api/client"
+import client from "./client"
 import Cookies from "js-cookie"
 
 // サインアップ（新規アカウント作成）
