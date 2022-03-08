@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import prefectures from './src/data/prefectures'
+
 const Row = styled.div`
 margin: 30px 20px;
 width: 1100px;
@@ -51,6 +53,14 @@ border-radius: 3px;
 border: solid 1px #a9a9a9;
 `
 
+const SelectBox = styled.select`
+font-size: 15px;
+width: 100%;
+padding: 15px;
+border-radius: 3px;
+border: solid 1px #a9a9a9;
+`
+
 function Form(props) {
   return (
     <Row>
@@ -62,10 +72,18 @@ function Form(props) {
           <Optional>任意</Optional>
         )}
       </TitleBox>
-      <FormBox
-        type={props.type}
-        placeholder={props.placeholder}
-      />
+      {(props.title != '都道府県') ? (
+        <FormBox
+          type={props.type}
+          placeholder={props.placeholder}
+        />
+      ) : (
+        <SelectBox>
+          {prefectures.map((val, key) => {
+            return (<option value={key}>{val}</option>)
+          })}
+        </SelectBox>
+      )}
     </Row>
   )
 }

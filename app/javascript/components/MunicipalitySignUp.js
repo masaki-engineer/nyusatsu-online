@@ -80,10 +80,10 @@ function MunicipalitySignUp() {
       type: 'text',
       placeholder: '電話番号を入力'
     }, {
-      title: '自治体種別',
+      title: 'ホームページURL',
       required: true,
       type: 'text',
-      placeholder: '自治体種別を入力'
+      placeholder: 'ホームページURLを入力'
     }
   ]
   return (
