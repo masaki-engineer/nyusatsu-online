@@ -1,0 +1,19 @@
+class Api::V1::Municipality::RegistrationsController < DeviseTokenAuth::RegistrationsController
+  private
+
+  def sign_up_params
+    params.permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :name,
+      :postal_code,
+      :prefecture_id,
+      :city,
+      :addresses,
+      :building,
+      :phone_number,
+      :home_page_url
+    )
+  end
+end

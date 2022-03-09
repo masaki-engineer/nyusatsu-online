@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import LogoImg from './images/logo.png'
+import LogoImg from '../../images/logo.png'
 
 const FooterMiddle = styled.div`
 background: #ffffff;

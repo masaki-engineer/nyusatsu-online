@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import TopImg from './images/top.png'
+import TopImg from '../../images/top.png'
 import styled from 'styled-components'
-import { AiFillRightCircle } from 'react-icons/ai'
 
-import UnderlineText from './UnderlineText'
-import PrefList from './PrefList'
-import Project from './Project'
+import UnderlineText from '../../components/utils/UnderlineText'
+import PrefList from '../../components/utils/PrefList'
+import Project from '../../components/utils/Project'
 
 const AllContents = styled.div`
 width: 1200px;
@@ -116,7 +115,7 @@ function TopPage() {
     {5: "セキュリティ機器全般" },
     {6: "エネルギー" },
     {7: "建築工事" }
-  ];
+  ]
   const projects = [
     {
       id: 1,
@@ -147,7 +146,7 @@ function TopPage() {
       bidDate: "2022/3/15",
       municipality: "大阪市"
     }
-  ];
+  ]
   return (
     <AllContents>
 
