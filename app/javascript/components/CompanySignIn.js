@@ -125,7 +125,7 @@ function CompanySignIn() {
           <Title>パスワード</Title>
         </TitleBox>
         <FormBox
-          type="text"
+          type="password"
           value={form.password}
           onChange={handleChange('password')}
         />

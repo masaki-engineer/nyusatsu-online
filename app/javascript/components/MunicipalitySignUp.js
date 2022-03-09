@@ -179,7 +179,7 @@ function MunicipalitySignUp() {
           <Required>必須</Required>
         </TitleBox>
         <FormBox
-          type="text"
+          type="password"
           value={form.password}
           onChange={handleChange('password')}
         />
@@ -191,7 +191,7 @@ function MunicipalitySignUp() {
           <Required>必須</Required>
         </TitleBox>
         <FormBox
-          type="text"
+          type="password"
           value={form.passwordConfirmation}
           onChange={handleChange('passwordConfirmation')}
         />
