@@ -8,6 +8,7 @@ import Footer from './Footer'
 import TopPage from './TopPage'
 import MunicipalitySignUp from './MunicipalitySignUp'
 import MunicipalitySignIn from './MunicipalitySignIn'
+import CompanySignUp from './CompanySignUp'
 import { getCurrentMunicipality } from "./src/lib/api/municipality"
 
 export const AuthContext = createContext()
@@ -50,6 +51,7 @@ function App() {
           <Route exact path="/" element={<TopPage />} />
           <Route exact path="/municipality/sign_up" element={<MunicipalitySignUp />} />
           <Route exact path="/municipality/sign_in" element={<MunicipalitySignIn />} />
+          <Route exact path="/company/sign_up" element={<CompanySignUp />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
