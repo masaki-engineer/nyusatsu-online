@@ -116,7 +116,7 @@ function TopPage() {
     {5: "セキュリティ機器全般" },
     {6: "エネルギー" },
     {7: "建築工事" }
-  ];
+  ]
   const projects = [
     {
       id: 1,
@@ -147,7 +147,7 @@ function TopPage() {
       bidDate: "2022/3/15",
       municipality: "大阪市"
     }
-  ];
+  ]
   return (
     <AllContents>
 

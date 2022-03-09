@@ -1,7 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
-// import './App.css'
 
 import Header from './Header'
 import Footer from './Footer'
