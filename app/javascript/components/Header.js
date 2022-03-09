@@ -7,6 +7,7 @@ import Cookies from "js-cookie"
 
 import { AuthContext } from "./App"
 import { municipalitySignOut } from "./src/lib/api/municipality"
+import { companySignOut } from "./src/lib/api/company"
 
 const Navbar = styled.header`
 background: #ffffff;
@@ -124,8 +125,12 @@ cursor: pointer;
 `
 
 function Header() {
-  const { isMunicipalitySignedIn, setIsMunicipalitySignedIn } = useContext(AuthContext)
-  console.log(isMunicipalitySignedIn)
+  const {
+    isMunicipalitySignedIn, setIsMunicipalitySignedIn,
+    isCompanySignedIn, setIsCompanySignedIn
+  } = useContext(AuthContext)
+  console.log(`Municipality signed in:${isMunicipalitySignedIn}`)
+  console.log(`Company signed in:${isCompanySignedIn}`)
 
   const handleMunicipalitySignOut = async () => {
     try {
@@ -138,6 +143,27 @@ function Header() {
         Cookies.remove("_uid")
 
         setIsMunicipalitySignedIn(false)
+
+        console.log("Succeeded in sign out")
+      } else {
+        console.log("Failed in sign out")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleCompanySignOut = async () => {
+    try {
+      const res = await companySignOut()
+
+      if (res.data.success === true) {
+        // サインアウト時には各Cookieを削除
+        Cookies.remove("_access_token")
+        Cookies.remove("_client")
+        Cookies.remove("_uid")
+
+        setIsCompanySignedIn(false)
 
         console.log("Succeeded in sign out")
       } else {
@@ -173,6 +199,17 @@ function Header() {
           </UserNav>
           <UserNav>
             <LogOut onClick={handleMunicipalitySignOut}>
+              ログアウト
+            </LogOut>
+          </UserNav>
+        </>
+      ) : isCompanySignedIn ? (
+        <>
+          <UserNav>
+            <MyPage href="#">マイページ</MyPage>
+          </UserNav>
+          <UserNav>
+            <LogOut onClick={handleCompanySignOut}>
               ログアウト
             </LogOut>
           </UserNav>
