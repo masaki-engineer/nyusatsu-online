@@ -12,7 +12,7 @@ export const signIn = (params)  => {
 }
 
 // サインアウト（ログアウト）
-export const signOut = () => {
+export const municipalitySignOut = () => {
   return client.delete("municipality/sign_out", { headers: {
     "access-token": Cookies.get("_access_token"),
     "client": Cookies.get("_client"),

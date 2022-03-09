@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import LogoImg from './images/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
+import Cookies from "js-cookie"
+
+import { AuthContext } from "./App"
+import { municipalitySignOut } from "./src/lib/api/municipality"
 
 const Navbar = styled.header`
 background: #ffffff;
@@ -60,6 +64,33 @@ min-width: 135px;
 height: 100%;
 `
 
+const MyPage = styled.a`
+color: #0056A6;
+font-size: 15px;
+font-weight: bold;
+text-align: center;
+width: 100%;
+height: 45px;
+display: block;
+margin: 22px 0;
+padding-top: 12px;
+border-right: solid 1px gray;
+border-left: solid 1px gray;
+cursor: pointer;
+`
+
+const LogOut = styled.div`
+color: #0056A6;
+font-size: 15px;
+font-weight: bold;
+text-align: center;
+width: 100%;
+height: 45px;
+margin: 22px 0;
+padding-top: 12px;
+cursor: pointer;
+`
+
 const MunicipalityNav = styled.div`
 background: #072542;
 color: #ffffff;
@@ -93,6 +124,30 @@ cursor: pointer;
 `
 
 function Header() {
+  const { isMunicipalitySignedIn, setIsMunicipalitySignedIn } = useContext(AuthContext)
+  console.log(isMunicipalitySignedIn)
+
+  const handleMunicipalitySignOut = async () => {
+    try {
+      const res = await municipalitySignOut()
+
+      if (res.data.success === true) {
+        // サインアウト時には各Cookieを削除
+        Cookies.remove("_access_token")
+        Cookies.remove("_client")
+        Cookies.remove("_uid")
+
+        setIsMunicipalitySignedIn(false)
+
+        console.log("Succeeded in sign out")
+      } else {
+        console.log("Failed in sign out")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <Navbar>
 
@@ -111,37 +166,52 @@ function Header() {
         </SearchBox>
       </LogoAndSearch>
 
-      <UserNav>
-        <MunicipalityNav>
-          自治体の方はコチラ
-        </MunicipalityNav>
-        <Link to="/municipality/sign_up">
-          <SignUpOrIn>
-            会員登録
-          </SignUpOrIn>
-        </Link>
-        <Link to="#">
-          <SignUpOrIn>
-            ログイン
-          </SignUpOrIn>
-        </Link>
-      </UserNav>
-
-      <UserNav>
-        <CompanyNav>
-          企業の方はコチラ
-        </CompanyNav>
-        <Link to="#">
-          <SignUpOrIn>
-            会員登録
-          </SignUpOrIn>
-        </Link>
-        <Link to="#">
-          <SignUpOrIn>
-            ログイン
-          </SignUpOrIn>
-        </Link>
-      </UserNav>
+      {isMunicipalitySignedIn ? (
+        <>
+          <UserNav>
+            <MyPage href="#">マイページ</MyPage>
+          </UserNav>
+          <UserNav>
+            <LogOut onClick={handleMunicipalitySignOut}>
+              ログアウト
+            </LogOut>
+          </UserNav>
+        </>
+      ) : (
+        <>
+          <UserNav>
+            <MunicipalityNav>
+              自治体の方はコチラ
+            </MunicipalityNav>
+            <Link to="/municipality/sign_up">
+              <SignUpOrIn>
+                会員登録
+              </SignUpOrIn>
+            </Link>
+            <Link to="#">
+              <SignUpOrIn>
+                ログイン
+              </SignUpOrIn>
+            </Link>
+          </UserNav>
+    
+          <UserNav>
+            <CompanyNav>
+              企業の方はコチラ
+            </CompanyNav>
+            <Link to="#">
+              <SignUpOrIn>
+                会員登録
+              </SignUpOrIn>
+            </Link>
+            <Link to="#">
+              <SignUpOrIn>
+                ログイン
+              </SignUpOrIn>
+            </Link>
+          </UserNav>
+        </>
+      )}
 
     </Navbar>
   )
