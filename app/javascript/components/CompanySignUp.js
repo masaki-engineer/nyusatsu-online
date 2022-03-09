@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import UnderlineText from './UnderlineText'
@@ -86,6 +86,25 @@ transition: 0.5s;
 `
 
 function CompanySignUp() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+    postalCode: "",
+    prefectureId: 0,
+    city: "",
+    addresses: "",
+    building: "",
+    phoneNumber: "",
+    homePageUrl: ""
+  })
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
+
   return (
     <Contents>
       <UnderlineText text={'企業会員登録'} />
@@ -97,6 +116,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.name}
+          onChange={handleChange('name')}
         />
       </Row>
 
@@ -107,6 +128,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.email}
+          onChange={handleChange('email')}
         />
       </Row>
 
@@ -117,6 +140,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.password}
+          onChange={handleChange('password')}
         />
       </Row>
 
@@ -127,6 +152,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.passwordConfirmation}
+          onChange={handleChange('passwordConfirmation')}
         />
       </Row>
 
@@ -137,6 +164,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.postalCode}
+          onChange={handleChange('postalCode')}
         />
       </Row>
 
@@ -146,6 +175,8 @@ function CompanySignUp() {
           <Required>必須</Required>
         </TitleBox>
         <SelectBox
+          value={form.prefectureId}
+          onChange={handleChange('prefectureId')}
         >
           {prefectures.map((val, key) => {
             return (<option value={key}>{val}</option>)
@@ -160,6 +191,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.city}
+          onChange={handleChange('city')}
         />
       </Row>
 
@@ -170,6 +203,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.addresses}
+          onChange={handleChange('addresses')}
         />
       </Row>
 
@@ -180,6 +215,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.building}
+          onChange={handleChange('building')}
         />
       </Row>
 
@@ -190,6 +227,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.phoneNumber}
+          onChange={handleChange('phoneNumber')}
         />
       </Row>
 
@@ -200,6 +239,8 @@ function CompanySignUp() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.homePageUrl}
+          onChange={handleChange('homePageUrl')}
         />
       </Row>
 
