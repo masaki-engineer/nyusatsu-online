@@ -6,6 +6,7 @@ import Cookies from "js-cookie"
 import { AuthContext } from "./App"
 import { signUp } from "./src/lib/api/municipality"
 import UnderlineText from './UnderlineText'
+import ErrorMessage from './ErrorMessage'
 import prefectures from './src/data/prefectures'
 
 const Contents = styled.div`
@@ -105,6 +106,7 @@ function MunicipalitySignUp() {
     phoneNumber: "",
     homePageUrl: ""
   })
+  const [errorMessageOpen, setErrorMessageOpen] = useState(false)
 
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
@@ -130,16 +132,22 @@ function MunicipalitySignUp() {
         console.log("Signed in successfully!")
       } else {
         console.log("Signed in failed!")
+        setErrorMessageOpen(true)
       }
     } catch (err) {
       console.log(err)
-      // setAlertMessageOpen(true)
+      setErrorMessageOpen(true)
     }
   }
 
   return (
     <Contents>
       <UnderlineText text={'自治体会員登録'} />
+
+      <ErrorMessage // エラーが発生した場合はアラートを表示
+        open={errorMessageOpen}
+        message="再度正しい情報を入力し登録してください。"
+      />
 
       <Row>
         <TitleBox>
