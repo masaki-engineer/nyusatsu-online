@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import LogoImg from './images/logo.png'
+import LogoImg from '../../images/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import Cookies from "js-cookie"
 
-import { AuthContext } from "./App"
-import { municipalitySignOut } from "./src/lib/api/municipality"
-import { companySignOut } from "./src/lib/api/company"
+import { AuthContext } from "../../App"
+import { municipalitySignOut } from "../../lib/api/municipality"
+import { companySignOut } from "../../lib/api/company"
 
 const Navbar = styled.header`
 background: #ffffff;

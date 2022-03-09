@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import TopImg from './images/top.png'
+import TopImg from '../../images/top.png'
 import styled from 'styled-components'
-import { AiFillRightCircle } from 'react-icons/ai'
 
-import UnderlineText from './UnderlineText'
-import PrefList from './PrefList'
-import Project from './Project'
+import UnderlineText from '../../components/utils/UnderlineText'
+import PrefList from '../../components/utils/PrefList'
+import Project from '../../components/utils/Project'
 
 const AllContents = styled.div`
 width: 1200px;

@@ -2,15 +2,15 @@ import React, { useState, useEffect, createContext } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import Header from './Header'
-import Footer from './Footer'
-import TopPage from './TopPage'
-import MunicipalitySignUp from './MunicipalitySignUp'
-import MunicipalitySignIn from './MunicipalitySignIn'
-import CompanySignUp from './CompanySignUp'
-import CompanySignIn from './CompanySignIn'
-import { getCurrentMunicipality } from "./src/lib/api/municipality"
-import { getCurrentCompany } from "./src/lib/api/company"
+import Header from './components/layouts/Header'
+import Footer from './components/layouts/Footer'
+import TopPage from './components/pages/TopPage'
+import MunicipalitySignUp from './components/pages/MunicipalitySignUp'
+import MunicipalitySignIn from './components/pages/MunicipalitySignIn'
+import CompanySignUp from './components/pages/CompanySignUp'
+import CompanySignIn from './components/pages/CompanySignIn'
+import { getCurrentMunicipality } from "./lib/api/municipality"
+import { getCurrentCompany } from "./lib/api/company"
 
 export const AuthContext = createContext()
 

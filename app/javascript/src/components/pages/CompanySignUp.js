@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import Cookies from "js-cookie"
 
-import { AuthContext } from "./App"
-import { signUp } from "./src/lib/api/company"
-import UnderlineText from './UnderlineText'
-import ErrorMessage from './ErrorMessage'
-import prefectures from './src/data/prefectures'
+import { AuthContext } from "../../App"
+import { signUp } from "../../lib/api/company"
+import UnderlineText from '../../components/utils/UnderlineText'
+import ErrorMessage from '../../components/utils/ErrorMessage'
+import prefectures from '../../lib/data/prefectures'
 
 const Contents = styled.div`
 background: #ffffff;

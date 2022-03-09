@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import Cookies from "js-cookie"
 
-import { AuthContext } from "./App"
-import { signIn } from "./src/lib/api/municipality"
-import UnderlineText from './UnderlineText'
-import ErrorMessage from './ErrorMessage'
+import { AuthContext } from "../../App"
+import { signIn } from "../../lib/api/municipality"
+import UnderlineText from '../../components/utils/UnderlineText'
+import ErrorMessage from '../../components/utils/ErrorMessage'
 
 const Contents = styled.div`
 background: #ffffff;
