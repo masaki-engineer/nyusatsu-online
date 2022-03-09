@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
+import Cookies from "js-cookie"
 
+import { AuthContext } from "./App"
+import { signIn } from "./src/lib/api/municipality"
 import UnderlineText from './UnderlineText'
+import ErrorMessage from './ErrorMessage'
 
 const Contents = styled.div`
 background: #ffffff;
@@ -55,19 +60,54 @@ transition: 0.5s;
 `
 
 function MunicipalitySignIn() {
+  const { setIsMunicipalitySignedIn, setCurrentMunicipality } = useContext(AuthContext)
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     email: "",
     password: ""
   })
+  const [errorMessageOpen, setErrorMessageOpen] = useState(false)
 
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
     console.log(form)
   }
-  
+
+  const handleSubmit = async () => {
+    try {
+      const res = await signIn(form)
+      console.log(res)
+
+      if (res.status === 200) {
+        // アカウント作成と同時にログイン
+        Cookies.set("_access_token", res.headers["access-token"])
+        Cookies.set("_client", res.headers["client"])
+        Cookies.set("_uid", res.headers["uid"])
+
+        setIsMunicipalitySignedIn(true)
+        setCurrentMunicipality(res.data.data)
+
+        navigate("/")
+
+        console.log("Signed in successfully!")
+      } else {
+        console.log("Signed in failed!")
+        setErrorMessageOpen(true)
+      }
+    } catch (err) {
+      console.log(err)
+      setErrorMessageOpen(true)
+    }
+  }
+
   return (
     <Contents>
       <UnderlineText text={'自治体ログイン'} />
+
+      <ErrorMessage // エラーが発生した場合はアラートを表示
+        open={errorMessageOpen}
+        message="再度正しい情報を入力しログインしてください。"
+      />
 
       <Row>
         <TitleBox>
@@ -91,7 +131,7 @@ function MunicipalitySignIn() {
         />
       </Row>
 
-      <SubmitButton>ログイン</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>ログイン</SubmitButton>
     </Contents>
   )
 }
