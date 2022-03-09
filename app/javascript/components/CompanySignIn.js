@@ -55,6 +55,16 @@ transition: 0.5s;
 `
 
 function CompanySignIn() {
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  })
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
+
   return (
     <Contents>
       <UnderlineText text={'企業ログイン'} />
@@ -65,6 +75,8 @@ function CompanySignIn() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.email}
+          onChange={handleChange('email')}
         />
       </Row>
       
@@ -74,6 +86,8 @@ function CompanySignIn() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.password}
+          onChange={handleChange('password')}
         />
       </Row>
 
