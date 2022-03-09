@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 import Cookies from "js-cookie"
 
+import { AuthContext } from "./App"
 import { signUp } from "./src/lib/api/municipality"
 import UnderlineText from './UnderlineText'
 import prefectures from './src/data/prefectures'
@@ -88,6 +90,8 @@ transition: 0.5s;
 `
 
 function MunicipalitySignUp() {
+  const { setIsMunicipalitySignedIn, setCurrentMunicipality } = useContext(AuthContext)
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -117,10 +121,11 @@ function MunicipalitySignUp() {
         Cookies.set("_access_token", res.headers["access-token"])
         Cookies.set("_client", res.headers["client"])
         Cookies.set("_uid", res.headers["uid"])
-        console.log(Cookies)
 
-        // setIsSignedIn(true)
-        // setCurrentUser(res.data.data)
+        setIsMunicipalitySignedIn(true)
+        setCurrentMunicipality(res.data.data)
+
+        navigate("/")
 
         console.log("Signed in successfully!")
       } else {
