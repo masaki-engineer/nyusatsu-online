@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
+import Cookies from "js-cookie"
 
+import { AuthContext } from "./App"
+import { signUp } from "./src/lib/api/company"
 import UnderlineText from './UnderlineText'
+import ErrorMessage from './ErrorMessage'
 import prefectures from './src/data/prefectures'
 
 const Contents = styled.div`
@@ -86,6 +91,8 @@ transition: 0.5s;
 `
 
 function CompanySignUp() {
+  const { setIsCompanySignedIn, setCurrentCompany } = useContext(AuthContext)
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -99,15 +106,48 @@ function CompanySignUp() {
     phoneNumber: "",
     homePageUrl: ""
   })
+  const [errorMessageOpen, setErrorMessageOpen] = useState(false)
 
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
     console.log(form)
   }
 
+  const handleSubmit = async () => {
+    try {
+      const res = await signUp(form)
+      console.log(res)
+
+      if (res.status === 200) {
+        // アカウント作成と同時にログイン
+        Cookies.set("_access_token", res.headers["access-token"])
+        Cookies.set("_client", res.headers["client"])
+        Cookies.set("_uid", res.headers["uid"])
+
+        setIsCompanySignedIn(true)
+        setCurrentCompany(res.data.data)
+
+        navigate("/")
+
+        console.log("Signed in successfully!")
+      } else {
+        console.log("Signed in failed!")
+        setErrorMessageOpen(true)
+      }
+    } catch (err) {
+      console.log(err)
+      setErrorMessageOpen(true)
+    }
+  }
+
   return (
     <Contents>
       <UnderlineText text={'企業会員登録'} />
+
+      <ErrorMessage // エラーが発生した場合はアラートを表示
+        open={errorMessageOpen}
+        message="再度正しい情報を入力し登録してください。"
+      />
 
       <Row>
         <TitleBox>
@@ -244,7 +284,7 @@ function CompanySignUp() {
         />
       </Row>
 
-      <SubmitButton>登録</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>登録</SubmitButton>
     </Contents>
   )
 }

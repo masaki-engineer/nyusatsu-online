@@ -13,7 +13,6 @@ class Api::V1::Company::RegistrationsController < DeviseTokenAuth::Registrations
       :addresses,
       :building,
       :phone_number,
-      :industry_id,
       :home_page_url
     )
   end

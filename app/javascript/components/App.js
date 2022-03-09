@@ -10,6 +10,7 @@ import MunicipalitySignUp from './MunicipalitySignUp'
 import MunicipalitySignIn from './MunicipalitySignIn'
 import CompanySignUp from './CompanySignUp'
 import { getCurrentMunicipality } from "./src/lib/api/municipality"
+import { getCurrentCompany } from "./src/lib/api/company"
 
 export const AuthContext = createContext()
 
@@ -17,6 +18,8 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [isMunicipalitySignedIn, setIsMunicipalitySignedIn] = useState(false)
   const [currentMunicipality, setCurrentMunicipality] = useState()
+  const [isCompanySignedIn, setIsCompanySignedIn] = useState(false)
+  const [currentCompany, setCurrentCompany] = useState()
 
   // 認証済みの自治体ユーザーがいるかどうかチェック
   // 確認できた場合はそのユーザーの情報を取得
@@ -43,9 +46,40 @@ function App() {
     handleGetCurrentMunicipality()
   }, [setCurrentMunicipality])
 
+  // 認証済みの企業ユーザーがいるかどうかチェック
+  // 確認できた場合はそのユーザーの情報を取得
+  const handleGetCurrentCompany = async () => {
+    try {
+      const res = await getCurrentCompany()
+
+      if (res?.data.isLogin === true) {
+        setIsCompanySignedIn(true)
+        setCurrentCompany(res?.data.data)
+
+        console.log(res?.data.data)
+      } else {
+        console.log("No current company")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    handleGetCurrentCompany()
+  }, [setCurrentCompany])
+
   return (
     <>
-      <AuthContext.Provider value={{ loading, setLoading, isMunicipalitySignedIn, setIsMunicipalitySignedIn, currentMunicipality, setCurrentMunicipality}}>
+      <AuthContext.Provider value={{
+        loading, setLoading,
+        isMunicipalitySignedIn, setIsMunicipalitySignedIn,
+        currentMunicipality, setCurrentMunicipality,
+        isCompanySignedIn, setIsCompanySignedIn,
+        currentCompany, setCurrentCompany
+        }}>
         <Header/>
         <Routes>
           <Route exact path="/" element={<TopPage />} />
