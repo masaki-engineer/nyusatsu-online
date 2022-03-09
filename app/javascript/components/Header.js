@@ -199,7 +199,7 @@ function Header() {
             <CompanyNav>
               企業の方はコチラ
             </CompanyNav>
-            <Link to="#">
+            <Link to="/company/sign_up">
               <SignUpOrIn>
                 会員登録
               </SignUpOrIn>
