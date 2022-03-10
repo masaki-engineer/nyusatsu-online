@@ -87,7 +87,7 @@ function MunicipalitySignIn() {
         setIsMunicipalitySignedIn(true)
         setCurrentMunicipality(res.data.data)
 
-        navigate("/")
+        navigate("/municipality/mypage")
 
         console.log("Signed in successfully!")
       } else {
