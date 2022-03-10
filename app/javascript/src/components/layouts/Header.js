@@ -195,7 +195,7 @@ function Header() {
       {isMunicipalitySignedIn ? (
         <>
           <UserNav>
-            <MyPage href="#">マイページ</MyPage>
+            <MyPage href="/municipality/mypage">マイページ</MyPage>
           </UserNav>
           <UserNav>
             <LogOut onClick={handleMunicipalitySignOut}>
