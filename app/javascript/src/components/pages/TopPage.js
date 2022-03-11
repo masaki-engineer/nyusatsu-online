@@ -38,7 +38,7 @@ list-style: none;
 `
 
 const Content = styled.div`
-width: calc(100% - 200px);
+width: 900px;
 `
 
 const TopImgBox = styled.img`
@@ -47,7 +47,7 @@ margin: 10px;
 `
 
 const Areas = styled.div`
-width: 880px;
+width: 860px;
 margin: 20px;
 border-top: solid 1px #a9a9a9;
 border-right: solid 1px #a9a9a9;
@@ -55,7 +55,7 @@ border-left: solid 1px #a9a9a9;
 `
 
 const Projects = styled.div`
-width: 880px;
+width: 860px;
 margin: 20px;
 `
 
