@@ -14,52 +14,6 @@ padding: 10px 0;
 display: flex;
 `
 
-const ControlBox = styled.div`
-background: #ffffff;
-height: 230px;
-width: 880px;
-border-radius: 10px;
-border: solid 1px #e7e7e7;
-box-shadow: 2px 2px 10px 0px #dcdcdc;
-margin: 20px auto;
-padding: 30px;
-display: flex;
-`
-
-const Buttons = styled.div`
-width: 300px;
-height: 100%;
-border-right: solid 1px gray;
-`
-
-const StatusBox = styled.div`
-height: 100%;
-padding: 20px 0 20px 50px;
-`
-
-const Row = styled.a`
-display: flex;
-width: 100%;
-height: 30px;
-margin: 0 auto 15px auto;
-`
-
-const Status = styled.div`
-color: #0156a5;
-font-size: 25px;
-font-weight: bold;
-width: 130px;
-`
-
-const Count = styled.div`
-font-size: 15px;
-height: 100%;
-`
-
-const Number = styled.span`
-font-size: 25px;
-`
-
 const SideBar = styled.div`
 width: 300px;
 border-right: solid 1px gray;
@@ -106,6 +60,52 @@ padding: 3px;
 border-radius: 2px;
 border: solid 1px #a9a9a9;
 margin-bottom: 10px;
+`
+
+const ControlBox = styled.div`
+background: #ffffff;
+height: 230px;
+width: 880px;
+border-radius: 10px;
+border: solid 1px #e7e7e7;
+box-shadow: 2px 2px 10px 0px #dcdcdc;
+margin: 20px auto;
+padding: 30px;
+display: flex;
+`
+
+const Buttons = styled.div`
+width: 300px;
+height: 100%;
+border-right: solid 1px gray;
+`
+
+const StatusBox = styled.div`
+height: 100%;
+padding: 20px 0 20px 50px;
+`
+
+const Row = styled.a`
+display: flex;
+width: 100%;
+height: 30px;
+margin: 0 auto 15px auto;
+`
+
+const Status = styled.div`
+color: #0156a5;
+font-size: 25px;
+font-weight: bold;
+width: 130px;
+`
+
+const Count = styled.div`
+font-size: 15px;
+height: 100%;
+`
+
+const Number = styled.span`
+font-size: 25px;
 `
 
 function CompanyMyPage() {
