@@ -20,7 +20,7 @@ border-right: solid 1px gray;
 `
 
 const Content = styled.div`
-width: calc(100% - 200px);
+width: 900px;
 `
 
 const SearchForm = styled.div`
@@ -65,7 +65,7 @@ margin-bottom: 10px;
 const ControlBox = styled.div`
 background: #ffffff;
 height: 230px;
-width: 880px;
+width: 840px;
 border-radius: 10px;
 border: solid 1px #e7e7e7;
 box-shadow: 2px 2px 10px 0px #dcdcdc;
