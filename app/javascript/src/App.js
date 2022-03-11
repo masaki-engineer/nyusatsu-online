@@ -12,6 +12,7 @@ import CompanySignIn from './components/pages/CompanySignIn'
 import { getCurrentMunicipality } from "./lib/api/municipality"
 import { getCurrentCompany } from "./lib/api/company"
 import MunicipalityMyPage from './components/pages/MunicipalityMyPage'
+import CompanyMyPage from './components/pages/CompanyMyPage'
 
 export const AuthContext = createContext()
 
@@ -89,6 +90,7 @@ function App() {
           <Route exact path="/company/sign_up" element={<CompanySignUp />} />
           <Route exact path="/company/sign_in" element={<CompanySignIn />} />
           <Route exact path="/municipality/my_page" element={<MunicipalityMyPage />} />
+          <Route exact path="/company/my_page" element={<CompanyMyPage />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
