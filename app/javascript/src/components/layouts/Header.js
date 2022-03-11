@@ -206,7 +206,7 @@ function Header() {
       ) : isCompanySignedIn ? (
         <>
           <UserNav>
-            <MyPage href="#">マイページ</MyPage>
+            <MyPage href="/company/my_page">マイページ</MyPage>
           </UserNav>
           <UserNav>
             <LogOut onClick={handleCompanySignOut}>
