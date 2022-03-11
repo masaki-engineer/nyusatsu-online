@@ -87,7 +87,7 @@ function CompanySignIn() {
         setIsCompanySignedIn(true)
         setCurrentCompany(res.data.data)
 
-        navigate("/")
+        navigate("/company/my_page")
 
         console.log("Signed in successfully!")
       } else {

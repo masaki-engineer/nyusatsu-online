@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import LogoImg from '../../images/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -129,6 +129,7 @@ function Header() {
     isMunicipalitySignedIn, setIsMunicipalitySignedIn,
     isCompanySignedIn, setIsCompanySignedIn
   } = useContext(AuthContext)
+  const navigate = useNavigate()
   console.log(`Municipality signed in:${isMunicipalitySignedIn}`)
   console.log(`Company signed in:${isCompanySignedIn}`)
 
@@ -143,6 +144,7 @@ function Header() {
         Cookies.remove("_uid")
 
         setIsMunicipalitySignedIn(false)
+        navigate("/")
 
         console.log("Succeeded in sign out")
       } else {
@@ -164,6 +166,7 @@ function Header() {
         Cookies.remove("_uid")
 
         setIsCompanySignedIn(false)
+        navigate("/")
 
         console.log("Succeeded in sign out")
       } else {
@@ -195,7 +198,7 @@ function Header() {
       {isMunicipalitySignedIn ? (
         <>
           <UserNav>
-            <MyPage href="#">マイページ</MyPage>
+            <MyPage href="/municipality/my_page">マイページ</MyPage>
           </UserNav>
           <UserNav>
             <LogOut onClick={handleMunicipalitySignOut}>
@@ -206,7 +209,7 @@ function Header() {
       ) : isCompanySignedIn ? (
         <>
           <UserNav>
-            <MyPage href="#">マイページ</MyPage>
+            <MyPage href="/company/my_page">マイページ</MyPage>
           </UserNav>
           <UserNav>
             <LogOut onClick={handleCompanySignOut}>
