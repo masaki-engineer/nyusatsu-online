@@ -1,9 +1,9 @@
 import React from 'react'
 
-function MunicipalityMypage() {
+function MunicipalityMyPage() {
   return (
-    <div>MunicipalityMypage</div>
+    <div>MunicipalityMyPage</div>
   )
 }
 
-export default MunicipalityMypage
+export default MunicipalityMyPage
