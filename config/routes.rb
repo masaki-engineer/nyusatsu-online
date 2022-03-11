@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'company/sign_in', to: 'site#index'
 
   get 'municipality/my_page', to: 'site#index'
+  get 'company/my_page', to: 'site#index'
 
   namespace :api do
     namespace :v1 do
