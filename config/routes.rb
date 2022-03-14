@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       namespace :company do
         resources :sessions, only: [:index]
       end
+
+      get '/projects/recent', to: 'projects#recent'
       
     end
   end
