@@ -18,7 +18,7 @@ class Api::V1::ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(
       :name, :category_id, :overview, :qualification, :bid_date,
-      :rep_division, :rep_person, :phone_number, :email, :url
-    ).merge(municipality_id: current_api_v1_municipality.id)
+      :rep_division, :rep_person, :phone_number, :email, :url, :municipality_id
+    )
   end
 end
