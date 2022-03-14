@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Button from '../utils/Button'
@@ -152,7 +153,9 @@ function MunicipalityMyPage() {
         <ControlBox>
 
           <Buttons>
-            <Button text={"案件登録"} background={"#0156a5"} hover={"#0674da"}/>
+            <Link to="/projects/new">
+              <Button text={"案件登録"} background={"#0156a5"} hover={"#0674da"}/>
+            </Link>
             <Button text={"自治体トップページ"} background={"#0156a5"} hover={"#0674da"}/>
           </Buttons>
 
