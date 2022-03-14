@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import TopImg from '../../images/top.png'
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import { getRecentProjects } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import PrefList from '../../components/utils/PrefList'
 import Project from '../../components/utils/Project'
+import categories from '../../lib/data/categories'
 
 const AllContents = styled.div`
 width: 1200px;
@@ -108,21 +109,12 @@ transition: 0.5s;
 `
 
 function TopPage() {
-  const categories = [
-    {1: "IT・情報通信" },
-    {2: "ITシステム・ネットワーク全般" },
-    {3: "オフィス機器・PC・事務用品全般" },
-    {4: "BPO・アウトソーシング" },
-    {5: "セキュリティ機器全般" },
-    {6: "エネルギー" },
-    {7: "建築工事" }
-  ]
-  let projects = []
+  const [projects, setProjects] = useState([])
 
   useEffect(async () => {
     const res = await getRecentProjects()
-    projects.push(res.data[0])
-    console.log(projects)
+    console.log(res.data)
+    setProjects(res.data)
   }, [])
 
   return (
@@ -133,11 +125,13 @@ function TopPage() {
           <UnderlineText text={'入札カテゴリー'} />
           <CategoryLists>
             {categories.map((val, key) => {
-              return (
-                <Link to="#">
-                  <CategoryList>{val[ Object.keys(val)[0] ]}</CategoryList>
-                </Link>
-              )
+              if (key !== 0) {
+                return (
+                  <Link to="#">
+                    <CategoryList>{val}</CategoryList>
+                  </Link>
+                )
+              }
             })}
           </CategoryLists>
         </SideBar>
@@ -194,10 +188,10 @@ function TopPage() {
                   key={key}
                   id={val.id}
                   name={val.name}
-                  category={val.category}
+                  category={categories[val.categoryId]}
                   createDate={val.createDate}
                   bidDate={val.bidDate}
-                  municipality={val.municipality}
+                  municipalityName={val.municipalityName}
                 />
               )
             })}
