@@ -7,5 +7,5 @@ export const createProject = (params) => {
 
 // 直近に登録された案件をMAX5件取得
 export const getRecentProjects = () => {
-  return client.post("projects/recent")
+  return client.get("projects/recent")
 }
