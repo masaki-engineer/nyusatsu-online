@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'municipality/my_page', to: 'site#index'
   get 'company/my_page', to: 'site#index'
 
+  get 'projects/new', to: 'site#index'
+
   namespace :api do
     namespace :v1 do
 
@@ -26,6 +28,9 @@ Rails.application.routes.draw do
       namespace :company do
         resources :sessions, only: [:index]
       end
+
+      get '/projects/recent', to: 'projects#recent'
+      resources :projects, only: [:create]
       
     end
   end

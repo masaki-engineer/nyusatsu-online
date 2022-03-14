@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_081342) do
+ActiveRecord::Schema.define(version: 2022_03_14_020712) do
 
   create_table "companies", charset: "utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -72,4 +72,22 @@ ActiveRecord::Schema.define(version: 2022_03_04_081342) do
     t.index ["uid", "provider"], name: "index_municipalities_on_uid_and_provider", unique: true
   end
 
+  create_table "projects", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "category_id", null: false
+    t.text "overview", null: false
+    t.text "qualification", null: false
+    t.date "bid_date", null: false
+    t.string "rep_division", null: false
+    t.string "rep_person", null: false
+    t.string "phone_number", null: false
+    t.string "email", null: false
+    t.string "url"
+    t.bigint "municipality_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["municipality_id"], name: "index_projects_on_municipality_id"
+  end
+
+  add_foreign_key "projects", "municipalities"
 end

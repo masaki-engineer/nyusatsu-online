@@ -79,7 +79,7 @@ function Project(props) {
       </Link>
       <BottomBox>
         <MunicipalityAndCategory>
-          <Municipality>{props.municipality}</Municipality>
+          <Municipality>{props.municipalityName}</Municipality>
           <Category>{props.category}</Category>
         </MunicipalityAndCategory>
         <Dates>

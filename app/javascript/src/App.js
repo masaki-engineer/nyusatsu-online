@@ -9,6 +9,7 @@ import MunicipalitySignUp from './components/pages/MunicipalitySignUp'
 import MunicipalitySignIn from './components/pages/MunicipalitySignIn'
 import CompanySignUp from './components/pages/CompanySignUp'
 import CompanySignIn from './components/pages/CompanySignIn'
+import NewProject from './components/pages/NewProject'
 import { getCurrentMunicipality } from "./lib/api/municipality"
 import { getCurrentCompany } from "./lib/api/company"
 import MunicipalityMyPage from './components/pages/MunicipalityMyPage'
@@ -91,6 +92,7 @@ function App() {
           <Route exact path="/company/sign_in" element={<CompanySignIn />} />
           <Route exact path="/municipality/my_page" element={<MunicipalityMyPage />} />
           <Route exact path="/company/my_page" element={<CompanyMyPage />} />
+          <Route exact path="/projects/new" element={<NewProject />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
