@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import UnderlineText from '../../components/utils/UnderlineText'
@@ -97,6 +97,24 @@ transition: 0.5s;
 `
 
 function NewProject() {
+  const [form, setForm] = useState({
+    name: "",
+    categoryId: 0,
+    overview: "",
+    qualification: "",
+    bidDate: "",
+    repDivision: "",
+    repPerson: "",
+    phoneNumber: "",
+    email: "",
+    url: ""
+  })
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
+
   return (
     <Contents>
       <UnderlineText text={'案件登録'} />
@@ -108,6 +126,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.name}
+          onChange={handleChange('name')}
         />
       </Row>
       
@@ -116,7 +136,10 @@ function NewProject() {
           <Title>カテゴリー</Title>
           <Required>必須</Required>
         </TitleBox>
-        <SelectBox>
+        <SelectBox
+          value={form.categoryId}
+          onChange={handleChange('categoryId')}
+        >
           {categories.map((val, key) => {
             return (<option value={key}>{val}</option>)
           })}
@@ -128,7 +151,10 @@ function NewProject() {
           <Title>案件概要</Title>
           <Required>必須</Required>
         </TitleBox>
-        <FormBoxTextarea/>
+        <FormBoxTextarea
+          value={form.overview}
+          onChange={handleChange('overview')}
+        />
       </Row>
       
       <Row>
@@ -136,7 +162,10 @@ function NewProject() {
           <Title>入札参加資格</Title>
           <Required>必須</Required>
         </TitleBox>
-        <FormBoxTextarea/>
+        <FormBoxTextarea
+          value={form.qualification}
+          onChange={handleChange('qualification')}
+        />
       </Row>
       
       <Row>
@@ -146,6 +175,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="date"
+          value={form.bidDate}
+          onChange={handleChange('bidDate')}
         />
       </Row>
       
@@ -156,6 +187,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.repDivision}
+          onChange={handleChange('repDivision')}
         />
       </Row>
       
@@ -166,6 +199,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.repPerson}
+          onChange={handleChange('repPerson')}
         />
       </Row>
       
@@ -176,6 +211,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.phoneNumber}
+          onChange={handleChange('phoneNumber')}
         />
       </Row>
       
@@ -186,6 +223,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.email}
+          onChange={handleChange('email')}
         />
       </Row>
       
@@ -196,6 +235,8 @@ function NewProject() {
         </TitleBox>
         <FormBox
           type="text"
+          value={form.url}
+          onChange={handleChange('url')}
         />
       </Row>
 
