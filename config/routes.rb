@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       end
 
       get '/projects/recent', to: 'projects#recent'
+      resources :projects, only: [:create]
       
     end
   end
