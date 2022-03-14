@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import { createProject } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import ErrorMessage from '../../components/utils/ErrorMessage'
 import categories from '../../lib/data/categories'
@@ -113,6 +114,25 @@ function NewProject() {
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
     console.log(form)
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const res = await createProject(form)
+      console.log(res)
+
+      if (res.status === 200) {
+        // navigate("/municipality/my_page")
+
+        console.log("Project created in successfully!")
+      } else {
+        console.log("Project created in failed!")
+        // setErrorMessageOpen(true)
+      }
+    } catch (err) {
+      console.log(err)
+      // setErrorMessageOpen(true)
+    }
   }
 
   return (
@@ -240,7 +260,7 @@ function NewProject() {
         />
       </Row>
 
-      <SubmitButton>登録</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>登録</SubmitButton>
     </Contents>
   )
 }
