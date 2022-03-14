@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'municipality/my_page', to: 'site#index'
   get 'company/my_page', to: 'site#index'
 
+  get 'projects/new', to: 'site#index'
+
   namespace :api do
     namespace :v1 do
 
