@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 
 import { AuthContext } from "../../App"
@@ -100,6 +101,7 @@ transition: 0.5s;
 
 function NewProject() {
   const { currentMunicipality } = useContext(AuthContext)
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     name: "",
     categoryId: 0,
@@ -126,8 +128,7 @@ function NewProject() {
       console.log(res)
 
       if (res.status === 200) {
-        // navigate("/municipality/my_page")
-
+        navigate("/municipality/my_page")
         console.log("Project created in successfully!")
       } else {
         console.log("Project created in failed!")
