@@ -113,6 +113,7 @@ function NewProject() {
     url: "",
     municipalityId: currentMunicipality.id
   })
+  const [errorMessageOpen, setErrorMessageOpen] = useState(false)
 
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
@@ -130,17 +131,22 @@ function NewProject() {
         console.log("Project created in successfully!")
       } else {
         console.log("Project created in failed!")
-        // setErrorMessageOpen(true)
+        setErrorMessageOpen(true)
       }
     } catch (err) {
       console.log(err)
-      // setErrorMessageOpen(true)
+      setErrorMessageOpen(true)
     }
   }
 
   return (
     <Contents>
       <UnderlineText text={'案件登録'} />
+
+      <ErrorMessage // エラーが発生した場合はアラートを表示
+        open={errorMessageOpen}
+        message="再度正しい情報を入力し登録してください。"
+      />
 
       <Row>
         <TitleBox>
