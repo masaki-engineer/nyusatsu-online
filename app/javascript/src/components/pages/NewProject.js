@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 
+import { AuthContext } from "../../App"
 import { createProject } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import ErrorMessage from '../../components/utils/ErrorMessage'
@@ -98,6 +99,7 @@ transition: 0.5s;
 `
 
 function NewProject() {
+  const { currentMunicipality } = useContext(AuthContext)
   const [form, setForm] = useState({
     name: "",
     categoryId: 0,
@@ -108,7 +110,8 @@ function NewProject() {
     repPerson: "",
     phoneNumber: "",
     email: "",
-    url: ""
+    url: "",
+    municipalityId: currentMunicipality.id
   })
 
   const handleChange = (input) => e => {
