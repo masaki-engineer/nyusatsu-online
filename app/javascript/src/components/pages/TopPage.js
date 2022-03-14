@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import TopImg from '../../images/top.png'
 import styled from 'styled-components'
 
+import { getRecentProjects } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import PrefList from '../../components/utils/PrefList'
 import Project from '../../components/utils/Project'
@@ -116,37 +117,14 @@ function TopPage() {
     {6: "エネルギー" },
     {7: "建築工事" }
   ]
-  const projects = [
-    {
-      id: 1,
-      name: "テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜テスト案件の募集だなり〜",
-      category: "運輸・物流",
-      createDate: "2022/02/28",
-      bidDate: "2022/3/31",
-      municipality: "福岡市"
-    }, {
-      id: 2,
-      name: "テスト案件の募集だなり〜２",
-      category: "オフィス機器・PC・事務用品全般",
-      createDate: "2022/02/26",
-      bidDate: "2022/3/15",
-      municipality: "大阪市"
-    }, {
-      id: 3,
-      name: "テスト案件の募集だなり〜２",
-      category: "オフィス機器・PC・事務用品全般",
-      createDate: "2022/02/26",
-      bidDate: "2022/3/15",
-      municipality: "大阪市"
-    }, {
-      id: 4,
-      name: "テスト案件の募集だなり〜２",
-      category: "オフィス機器・PC・事務用品全般",
-      createDate: "2022/02/26",
-      bidDate: "2022/3/15",
-      municipality: "大阪市"
-    }
-  ]
+  let projects = []
+
+  useEffect(async () => {
+    const res = await getRecentProjects()
+    projects.push(res.data[0])
+    console.log(projects)
+  }, [])
+
   return (
     <AllContents>
 
