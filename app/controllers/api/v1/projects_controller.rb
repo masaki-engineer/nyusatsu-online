@@ -28,19 +28,20 @@ class Api::V1::ProjectsController < ApplicationController
     converted_projects = []
     projects.each do |project|
       converted_project = {
-      name: project.name,
-      category_id: project.category_id,
-      overview: project.overview,
-      qualification: project.qualification,
-      bid_date: project.bid_date,
-      rep_division: project.rep_division,
-      rep_person: project.rep_person,
-      phone_number: project.phone_number,
-      email: project.email,
-      url: project.url,
-      municipality_id: project.municipality_id,
-      municipality_name: Municipality.find(project.municipality_id)[:name],
-      create_date: project.created_at.to_date
+        id: project.id,
+        name: project.name,
+        category_id: project.category_id,
+        overview: project.overview,
+        qualification: project.qualification,
+        bid_date: project.bid_date,
+        rep_division: project.rep_division,
+        rep_person: project.rep_person,
+        phone_number: project.phone_number,
+        email: project.email,
+        url: project.url,
+        municipality_id: project.municipality_id,
+        municipality_name: Municipality.find(project.municipality_id)[:name],
+        create_date: project.created_at.to_date
       }
       converted_projects.push(converted_project)
     end
