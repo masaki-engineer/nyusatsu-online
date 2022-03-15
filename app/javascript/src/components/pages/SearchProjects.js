@@ -65,7 +65,7 @@ justify-content: space-between;
 
 const Date = styled.input`
 font-size: 12px;
-width: 120px;
+width: 135px;
 height: 25px;
 padding: 3px;
 border-radius: 2px;
@@ -107,16 +107,16 @@ function SearchProjects() {
 
           <Title>入札時期</Title>
           <DateForm>
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
+            <Date type="date"/>
             〜
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
+            <Date type="date"/>
           </DateForm>
 
           <Title>登録時期</Title>
           <DateForm>
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
+            <Date type="date"/>
             〜
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
+            <Date type="date"/>
           </DateForm>
 
           <Button text={"検索"} background={"#0156a5"} hover={"#0674da"}/>
