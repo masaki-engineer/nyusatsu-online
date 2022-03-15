@@ -15,6 +15,13 @@ class Api::V1::ProjectsController < ApplicationController
     end
   end
 
+  def search
+    projects = convert_for_front(
+      Project.includes(:municipality).search(search_params).order("projects.created_at DESC")
+    )
+    render json: projects
+  end
+
   private
 
   def project_params
@@ -22,6 +29,10 @@ class Api::V1::ProjectsController < ApplicationController
       :name, :category_id, :overview, :qualification, :bid_date,
       :rep_division, :rep_person, :phone_number, :email, :url, :municipality_id
     )
+  end
+
+  def search_params
+    params.permit(:name, :category_id, :prefecture_id, :bid_date_from, :bid_date_to, :create_date_from, :create_date_to)
   end
 
   def convert_for_front(projects)
