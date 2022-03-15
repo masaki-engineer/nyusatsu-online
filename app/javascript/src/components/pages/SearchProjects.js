@@ -35,6 +35,16 @@ font-size: 15px;
 margin-bottom: 5px;
 `
 
+const FormBox = styled.input`
+font-size: 12px;
+width: 100%;
+height: 25px;
+padding: 3px;
+border-radius: 2px;
+border: solid 1px #a9a9a9;
+margin-bottom: 10px;
+`
+
 const SelectBox = styled.select`
 font-size: 12px;
 width: 100%;
@@ -75,6 +85,11 @@ function SearchProjects() {
       <SideBar>
         <UnderlineText text={'案件を検索する'} />
         <SearchForm>
+
+          <Title>案件名</Title>
+          <FormBox
+            type="text"
+          />
 
           <Title>入札カテゴリー</Title>
           <SelectBox>
