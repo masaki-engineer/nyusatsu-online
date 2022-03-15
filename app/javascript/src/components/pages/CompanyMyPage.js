@@ -3,8 +3,7 @@ import styled from 'styled-components'
 
 import Button from '../utils/Button'
 import UnderlineText from '../utils/UnderlineText'
-import categories from '../../lib/data/categories'
-import prefectures from '../../lib/data/prefectures'
+import SearchForm from '../utils/SearchForm'
 
 const AllContents = styled.div`
 background: #ffffff;
@@ -21,45 +20,6 @@ border-right: solid 1px gray;
 
 const Content = styled.div`
 width: 900px;
-`
-
-const SearchForm = styled.div`
-width: calc(100% - 20px);
-padding: 5px 0;
-margin: 10px auto;
-`
-
-const Title = styled.div`
-font-size: 15px;
-margin-bottom: 5px;
-`
-
-const SelectBox = styled.select`
-font-size: 12px;
-width: 100%;
-height: 25px;
-padding: 3px;
-border-radius: 2px;
-border: solid 1px #a9a9a9;
-margin-bottom: 10px;
-`
-
-const DateForm = styled.div`
-font-size: 12px;
-width: 100%;
-margin-bottom: 10px;
-display: flex;
-justify-content: space-between;
-`
-
-const Date = styled.input`
-font-size: 12px;
-width: 120px;
-height: 25px;
-padding: 3px;
-border-radius: 2px;
-border: solid 1px #a9a9a9;
-margin-bottom: 10px;
 `
 
 const ControlBox = styled.div`
@@ -113,39 +73,7 @@ function CompanyMyPage() {
     <AllContents>
       <SideBar>
         <UnderlineText text={'案件を検索する'} />
-        <SearchForm>
-
-          <Title>入札カテゴリー</Title>
-          <SelectBox>
-            {categories.map((val, key) => {
-              return (<option value={key}>{val}</option>)
-            })}
-          </SelectBox>
-
-          <Title>都道府県</Title>
-          <SelectBox>
-            {prefectures.map((val, key) => {
-              return (<option value={key}>{val}</option>)
-            })}
-          </SelectBox>
-
-          <Title>入札時期</Title>
-          <DateForm>
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
-            〜
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
-          </DateForm>
-
-          <Title>登録時期</Title>
-          <DateForm>
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
-            〜
-            <Date type={"text"} placeholder={"yyyy/mm/dd"}/>
-          </DateForm>
-
-          <Button text={"検索"} background={"#0156a5"} hover={"#0674da"}/>
-
-        </SearchForm>
+        <SearchForm/>
       </SideBar>
       <Content>
         <UnderlineText text={'◯◯株式会社　マイページ'} />
