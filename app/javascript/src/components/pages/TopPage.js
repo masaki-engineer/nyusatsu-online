@@ -127,7 +127,7 @@ function TopPage() {
             {categories.map((val, key) => {
               if (key !== 0) {
                 return (
-                  <Link to="#">
+                  <Link to={`/projects/search?category_id=${key}`}>
                     <CategoryList>{val}</CategoryList>
                   </Link>
                 )
