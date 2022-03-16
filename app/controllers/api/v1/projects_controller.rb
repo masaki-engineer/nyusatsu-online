@@ -32,7 +32,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def search_params
-    params.permit(:name, :category_id, :prefecture_id, :bid_date_from, :bid_date_to, :create_date_from, :create_date_to)
+    params.permit(:name, :category_id, :prefecture_id, :bid_date_from, :bid_date_to, :create_date_from, :create_date_to, :municipality_id)
   end
 
   def convert_for_front(projects)

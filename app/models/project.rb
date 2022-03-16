@@ -21,6 +21,7 @@ class Project < ApplicationRecord
       .bid_date_to(search_params[:bid_date_to])
       .create_date_from(search_params[:create_date_from])
       .create_date_to(search_params[:create_date_to])
+      .municipality_id_is(search_params[:municipality_id])
   end
   scope :name_like, -> (name) {
     if name.present?
@@ -35,4 +36,5 @@ class Project < ApplicationRecord
   scope :bid_date_to, -> (to) { where('bid_date <= ?', to) if to.present? }
   scope :create_date_from, -> (from) { where('? <= projects.created_at', from) if from.present? }
   scope :create_date_to, -> (to) { where('projects.created_at <= ?', to) if to.present? }
+  scope :municipality_id_is, -> (municipality_id) { where(municipality_id: municipality_id) if municipality_id.present? }
 end
