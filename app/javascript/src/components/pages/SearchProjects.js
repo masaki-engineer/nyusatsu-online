@@ -38,7 +38,7 @@ function SearchProjects() {
     const res = await searchProjects(query)
     console.log(res.data)
     setProjects(res.data)
-  }, [])
+  }, [query])
   
   return (
     <AllContents>
