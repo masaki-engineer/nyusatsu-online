@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import Button from '../utils/Button'
@@ -55,23 +55,45 @@ margin-bottom: 10px;
 `
 
 function SearchForm() {
+  const [form, setForm] = useState({
+    name: "",
+    categoryId: 0,
+    prefectureId: 0,
+    bidDateFrom: "",
+    bidDateTo: "",
+    createDateFrom: "",
+    createDateTo: ""
+  })
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
   return (
     <Contents>
 
       <Title>案件名</Title>
       <FormBox
         type="text"
+        value={form.name}
+        onChange={handleChange('name')}
       />
 
       <Title>入札カテゴリー</Title>
-      <SelectBox>
+      <SelectBox
+        value={form.categoryId}
+        onChange={handleChange('categoryId')}
+      >
         {categories.map((val, key) => {
           return (<option value={key}>{val}</option>)
         })}
       </SelectBox>
 
       <Title>都道府県</Title>
-      <SelectBox>
+      <SelectBox
+        value={form.prefectureId}
+        onChange={handleChange('prefectureId')}
+      >
         {prefectures.map((val, key) => {
           return (<option value={key}>{val}</option>)
         })}
@@ -79,16 +101,32 @@ function SearchForm() {
 
       <Title>入札時期</Title>
       <DateForm>
-        <Date type="date"/>
+        <Date
+        type="date"
+        value={form.bidDateFrom}
+        onChange={handleChange('bidDateFrom')}
+        />
         〜
-        <Date type="date"/>
+        <Date
+        type="date"
+        value={form.bidDateTo}
+        onChange={handleChange('bidDateTo')}
+        />
       </DateForm>
 
       <Title>登録時期</Title>
       <DateForm>
-        <Date type="date"/>
+        <Date
+        type="date"
+        value={form.createDateFrom}
+        onChange={handleChange('createDateFrom')}
+        />
         〜
-        <Date type="date"/>
+        <Date
+        type="date"
+        value={form.createDateTo}
+        onChange={handleChange('createDateTo')}
+        />
       </DateForm>
 
       <Button text={"検索"} background={"#0156a5"} hover={"#0674da"}/>
