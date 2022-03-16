@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'projects/new', to: 'site#index'
   get 'projects/search', to: 'site#index'
+  get 'municipality/:id', to: 'site#index'
 
   namespace :api do
     namespace :v1 do
