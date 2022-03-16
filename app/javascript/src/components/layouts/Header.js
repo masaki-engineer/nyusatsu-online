@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import LogoImg from '../../images/logo.png'
@@ -8,6 +8,7 @@ import Cookies from "js-cookie"
 import { AuthContext } from "../../App"
 import { municipalitySignOut } from "../../lib/api/municipality"
 import { companySignOut } from "../../lib/api/company"
+import { formToQuery } from '../../lib/function/search'
 
 const Navbar = styled.header`
 background: #ffffff;
@@ -177,6 +178,17 @@ function Header() {
     }
   }
 
+  const [form, setForm] = useState({ name: "" })
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
+  const handleSubmit = () => {
+    navigate(`/projects/search${ formToQuery(form) }`)
+    setForm({ name: "" })
+  }
+
   return (
     <Navbar>
 
@@ -188,8 +200,10 @@ function Header() {
           <SearchForm
             type="text"
             placeholder="入札案件を検索"
+            value={form.name}
+            onChange={handleChange('name')}
           />
-          <SearchButton>
+          <SearchButton onClick={handleSubmit}>
             <AiOutlineSearch/>
           </SearchButton>
         </SearchBox>
