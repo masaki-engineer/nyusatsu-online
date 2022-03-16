@@ -12,5 +12,5 @@ export const getRecentProjects = () => {
 
 // 検索条件(query)に該当する案件を全て取得
 export const searchProjects = (query) => {
-  return client.get(`projects/search?${query}`)
+  return client.get(`projects/search${query}`)
 }
