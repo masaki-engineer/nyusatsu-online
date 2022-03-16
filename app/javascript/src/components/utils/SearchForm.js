@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from "react-router-dom"
 import styled from 'styled-components'
 
 import Button from '../utils/Button'
 import categories from '../../lib/data/categories'
 import prefectures from '../../lib/data/prefectures'
+import { formToQuery, queryToForm } from '../../lib/function/search'
 
 const Contents = styled.div`
 width: calc(100% - 20px);
@@ -56,6 +57,7 @@ margin-bottom: 10px;
 `
 
 function SearchForm() {
+  const query = useLocation().search
   const [form, setForm] = useState({
     name: "",
     category_id: "0",
@@ -66,28 +68,18 @@ function SearchForm() {
     create_date_to: ""
   })
 
+  useEffect(() => {
+    setForm( queryToForm(query) )
+  }, [query])
+
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
     console.log(form)
   }
 
-  const formToQuery = (form) => {
-    let query = "?"
-    for (let key in form) {
-      if (key == "category_id" || key == "prefecture_id") {
-        if (form[key] !== "0") {query += `${key}=${form[key]}&`}
-      } else {
-        if (form[key] !== "") {query += `${key}=${form[key]}&`}
-      }
-    }
-    return query.slice(0, -1)
-  }
-
   const navigate = useNavigate()
   const handleSubmit = () => {
-    const query = formToQuery(form)
-    console.log(query)
-    navigate(`/projects/search${query}`)
+    navigate(`/projects/search${ formToQuery(form) }`)
   }
 
   return (
