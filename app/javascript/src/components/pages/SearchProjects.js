@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import UnderlineText from '../utils/UnderlineText'
@@ -29,7 +29,7 @@ margin: 20px;
 `
 
 function SearchProjects() {
-  const projects = []
+  const [projects, setProjects] = useState([])
   return (
     <AllContents>
       <SideBar>
