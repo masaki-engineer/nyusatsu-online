@@ -34,9 +34,8 @@ Rails.application.routes.draw do
 
       get '/projects/recent', to: 'projects#recent'
       get '/projects/search', to: 'projects#search'
-      get '/projects/search_by_municipality', to: 'projects#search_by_municipality'
       resources :projects, only: [:create]
-      
+
     end
   end
 
