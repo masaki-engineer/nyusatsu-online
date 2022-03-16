@@ -54,7 +54,7 @@ function PrefList(props) {
       <Prefectures>
         {props.prefectures.map(val => {
           return (
-            <Prefecture href="#">
+            <Prefecture href={`/projects/search?prefecture_id=${ Object.keys(val)[0] }`}>
               <RightSign>
                 <AiFillRightCircle/>
               </RightSign>
