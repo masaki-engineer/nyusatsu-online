@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 
+import { searchProjects } from "../../lib/api/project"
 import UnderlineText from '../utils/UnderlineText'
 import SearchForm from '../utils/SearchForm'
 import Project from '../../components/utils/Project'
@@ -30,6 +32,14 @@ margin: 20px;
 
 function SearchProjects() {
   const [projects, setProjects] = useState([])
+  const query = useLocation().search
+
+  useEffect(async () => {
+    const res = await searchProjects(query)
+    console.log(res.data)
+    setProjects(res.data)
+  }, [])
+  
   return (
     <AllContents>
       <SideBar>
@@ -37,7 +47,7 @@ function SearchProjects() {
         <SearchForm/>
       </SideBar>
       <Content>
-        <UnderlineText text={`検索結果(${projects.length}件)`} />
+        <UnderlineText text={(projects.length == 0) ? (`検索結果`) : (`検索結果(${projects.length}件)`)} />
         <Projects>
           {projects.map((val, key) => {
             return (
