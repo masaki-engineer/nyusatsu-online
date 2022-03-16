@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'company/my_page', to: 'site#index'
 
   get 'projects/new', to: 'site#index'
+  get 'projects/search', to: 'site#index'
 
   namespace :api do
     namespace :v1 do
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
       end
 
       get '/projects/recent', to: 'projects#recent'
+      get '/projects/search', to: 'projects#search'
       resources :projects, only: [:create]
       
     end

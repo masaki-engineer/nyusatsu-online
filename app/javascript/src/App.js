@@ -14,6 +14,7 @@ import { getCurrentMunicipality } from "./lib/api/municipality"
 import { getCurrentCompany } from "./lib/api/company"
 import MunicipalityMyPage from './components/pages/MunicipalityMyPage'
 import CompanyMyPage from './components/pages/CompanyMyPage'
+import SearchProjects from './components/pages/SearchProjects'
 
 export const AuthContext = createContext()
 
@@ -93,6 +94,7 @@ function App() {
           <Route exact path="/municipality/my_page" element={<MunicipalityMyPage />} />
           <Route exact path="/company/my_page" element={<CompanyMyPage />} />
           <Route exact path="/projects/new" element={<NewProject />} />
+          <Route exact path="/projects/search" element={<SearchProjects />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
