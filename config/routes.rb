@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'projects/new', to: 'site#index'
   get 'projects/search', to: 'site#index'
+  get 'municipality/:id', to: 'site#index'
 
   namespace :api do
     namespace :v1 do
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       namespace :municipality do
         resources :sessions, only: [:index]
       end
+      resources :municipalities, only: [:show]
 
       mount_devise_token_auth_for 'Company', at: 'company', controllers: {
         registrations: 'api/v1/company/registrations'
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
       get '/projects/recent', to: 'projects#recent'
       get '/projects/search', to: 'projects#search'
       resources :projects, only: [:create]
-      
+
     end
   end
 

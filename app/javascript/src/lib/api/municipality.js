@@ -29,3 +29,8 @@ export const getCurrentMunicipality = () => {
     "uid": Cookies.get("_uid")
   }})
 }
+
+// IDから自治体情報を取得
+export const getMunicipalityById = (id) => {
+  return client.get(`municipalities/${id}`)
+}

@@ -58,6 +58,7 @@ margin-bottom: 10px;
 
 function SearchForm() {
   const query = useLocation().search
+  const path = useLocation().pathname
   const [form, setForm] = useState({
     name: "",
     category_id: "0",
@@ -79,7 +80,7 @@ function SearchForm() {
 
   const navigate = useNavigate()
   const handleSubmit = () => {
-    navigate(`/projects/search${ formToQuery(form) }`)
+    navigate(path + formToQuery(form))
   }
 
   return (
@@ -102,15 +103,21 @@ function SearchForm() {
         })}
       </SelectBox>
 
-      <Title>都道府県</Title>
-      <SelectBox
-        value={form.prefecture_id}
-        onChange={handleChange('prefecture_id')}
-      >
-        {prefectures.map((val, key) => {
-          return (<option value={key}>{val}</option>)
-        })}
-      </SelectBox>
+      {(path.match(/search/)) ? (
+        <>
+          <Title>都道府県</Title>
+          <SelectBox
+            value={form.prefecture_id}
+            onChange={handleChange('prefecture_id')}
+          >
+            {prefectures.map((val, key) => {
+              return (<option value={key}>{val}</option>)
+            })}
+          </SelectBox>
+        </>
+      ) : (
+        <></>
+      )}
 
       <Title>入札時期</Title>
       <DateForm>
