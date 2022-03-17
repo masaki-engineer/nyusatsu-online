@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import styled from 'styled-components'
 
 import UnderlineText from '../utils/UnderlineText'
+import prefectures from '../../lib/data/prefectures'
 import { getCompanyById } from '../../lib/api/company'
 
 const AllContents = styled.div`
@@ -83,7 +84,7 @@ function CompanyShow() {
     <AllContents>
       <Header>
         <Heading>
-          <CompanyName>{"test"}</CompanyName>
+          <CompanyName>{company.name}</CompanyName>
         </Heading>
         <Menubar>
           <Menu onClick={() => setMenu("profile")} is_selected={(menu == "profile")}>基本情報</Menu>
@@ -94,17 +95,23 @@ function CompanyShow() {
           <ProfileInfos>
             <UnderlineText text={'住所'} />
             <Profile>
-              〒{"test"}<br/>
-              {"test"}
+              〒{company.postalCode}<br/>
+              {prefectures[company.prefectureId] + company.city + company.addresses + company.building}
             </Profile>
             <UnderlineText text={'電話番号'} />
             <Profile>
-              {"test"}
+              {company.phoneNumber}
             </Profile>
-            <UnderlineText text={'ホームページ'} />
-            <Profile>
-              {"test"}
-            </Profile>
+            {(company.homePageUrl !== "") ? (
+              <>
+                <UnderlineText text={'ホームページ'} />
+                <Profile>
+                  {company.homePageUrl}
+                </Profile>
+              </>
+            ) : (
+              <></>
+            )}
           </ProfileInfos>
         ) : (
           <></>
