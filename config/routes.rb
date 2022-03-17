@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       namespace :company do
         resources :sessions, only: [:index]
       end
+      resources :companies, only: [:show]
 
       get '/projects/recent', to: 'projects#recent'
       get '/projects/search', to: 'projects#search'
