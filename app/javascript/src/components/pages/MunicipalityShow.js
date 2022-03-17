@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import styled from 'styled-components'
 
 import UnderlineText from '../utils/UnderlineText'
@@ -100,6 +100,7 @@ function MunicipalityShow() {
   const [municipality, setMunicipality] = useState({})
   const [projects, setProjects] = useState([])
   const id = useParams().id
+  const query = useLocation().search
 
   useEffect(async () => {
     const res = await getMunicipalityById(id)
@@ -108,10 +109,13 @@ function MunicipalityShow() {
   }, [])
 
   useEffect(async () => {
-    const res = await searchProjects(`?municipality_id=${id}`)
+    let searchQuery = ""
+    if (query == "") {searchQuery = `?municipality_id=${id}`}
+    else {searchQuery = `${query}&municipality_id=${id}`}
+    const res = await searchProjects(searchQuery)
     console.log(res.data)
     setProjects(res.data)
-  }, [])
+  }, [query])
 
   return (
     <AllContents>
