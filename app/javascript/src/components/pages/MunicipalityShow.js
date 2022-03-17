@@ -6,6 +6,7 @@ import UnderlineText from '../utils/UnderlineText'
 import SearchForm from '../utils/SearchForm'
 import Project from '../../components/utils/Project'
 import categories from '../../lib/data/categories'
+import prefectures from '../../lib/data/prefectures'
 import { getMunicipalityById } from '../../lib/api/municipality'
 
 const AllContents = styled.div`
@@ -105,7 +106,7 @@ function MunicipalityShow() {
       <Header>
         <Heading>
           <Logo/>
-          <MunicipalityName>{"〇〇市"}</MunicipalityName>
+          <MunicipalityName>{municipality.name}</MunicipalityName>
         </Heading>
         <Menubar>
           <Menu onClick={() => setMenu("projects")} is_selected={(menu == "projects")}>登録案件</Menu>
@@ -141,16 +142,16 @@ function MunicipalityShow() {
           <>
             <UnderlineText text={'住所'} />
             <Profile>
-              〒123-4567<br/>
-              福岡県福岡市中央区天神３丁目
+              〒{municipality.postalCode}<br/>
+              {prefectures[municipality.prefectureId] + municipality.city + municipality.addresses + municipality.building}
             </Profile>
             <UnderlineText text={'電話番号'} />
             <Profile>
-              092-123-4567
+              {municipality.phoneNumber}
             </Profile>
             <UnderlineText text={'ホームページ'} />
             <Profile>
-              https://www.city.fukuoka.lg.jp/
+              {municipality.homePageUrl}
             </Profile>
           </>
         ) : (
