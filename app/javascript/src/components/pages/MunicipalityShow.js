@@ -88,6 +88,7 @@ margin-left: 15px;
 
 function MunicipalityShow() {
   const [menu, setMenu] = useState("projects")
+  const [municipality, setMunicipality] = useState({})
   const projects = []
 
   return (
