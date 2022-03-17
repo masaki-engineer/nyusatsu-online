@@ -68,6 +68,7 @@ margin-left: 15px;
 
 function CompanyShow() {
   const [menu, setMenu] = useState("profile")
+  const [company, setCompany] = useState({})
 
   return (
     <AllContents>
