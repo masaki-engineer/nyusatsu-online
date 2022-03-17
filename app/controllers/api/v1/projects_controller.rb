@@ -22,6 +22,13 @@ class Api::V1::ProjectsController < ApplicationController
     render json: projects
   end
 
+  def show
+    project = convert_for_front(
+      [Project.includes(:municipality).find(params[:id])]
+    )[0]
+    render json: project
+  end
+
   private
 
   def project_params
@@ -52,6 +59,7 @@ class Api::V1::ProjectsController < ApplicationController
         url: project.url,
         municipality_id: project.municipality_id,
         municipality_name: Municipality.find(project.municipality_id)[:name],
+        prefecture_id: Municipality.find(project.municipality_id)[:prefecture_id],
         create_date: project.created_at.to_date
       }
       converted_projects.push(converted_project)
