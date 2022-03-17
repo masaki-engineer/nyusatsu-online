@@ -8,6 +8,7 @@ import Project from '../../components/utils/Project'
 import categories from '../../lib/data/categories'
 import prefectures from '../../lib/data/prefectures'
 import { getMunicipalityById } from '../../lib/api/municipality'
+import { searchProjects } from "../../lib/api/project"
 
 const AllContents = styled.div`
 width: 1200px;
@@ -99,6 +100,12 @@ function MunicipalityShow() {
     const res = await getMunicipalityById(id)
     console.log(res.data)
     setMunicipality(res.data)
+  }, [])
+
+  useEffect(async () => {
+    const res = await searchProjects(`?municipality_id=${id}`)
+    console.log(res.data)
+    setProjects(res.data)
   }, [])
 
   return (
