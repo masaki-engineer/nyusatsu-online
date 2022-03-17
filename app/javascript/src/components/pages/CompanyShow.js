@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom"
 import styled from 'styled-components'
 
 import UnderlineText from '../utils/UnderlineText'
+import { getCompanyById } from '../../lib/api/company'
 
 const AllContents = styled.div`
 width: 1200px;
@@ -69,6 +71,13 @@ margin-left: 15px;
 function CompanyShow() {
   const [menu, setMenu] = useState("profile")
   const [company, setCompany] = useState({})
+  const id = useParams().id
+
+  useEffect(async () => {
+    const res = await getCompanyById(id)
+    console.log(res.data)
+    setCompany(res.data)
+  }, [])
 
   return (
     <AllContents>
