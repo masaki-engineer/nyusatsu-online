@@ -69,6 +69,7 @@ const Contents = styled.div`
 background: #ffffff;
 width: 100%;
 padding: 10px 0;
+display: flex;
 `
 
 const SideBar = styled.div`
@@ -83,6 +84,10 @@ width: 900px;
 const Projects = styled.div`
 width: 860px;
 margin: 20px;
+`
+
+const ProfileInfos = styled.div`
+width: 100%;
 `
 
 const Profile = styled.div`
@@ -146,7 +151,7 @@ function MunicipalityShow() {
             </Content>
           </>
         ) : (menu == "profile") ? (
-          <>
+          <ProfileInfos>
             <UnderlineText text={'住所'} />
             <Profile>
               〒{municipality.postalCode}<br/>
@@ -160,7 +165,7 @@ function MunicipalityShow() {
             <Profile>
               {municipality.homePageUrl}
             </Profile>
-          </>
+          </ProfileInfos>
         ) : (
           <></>
         )}
