@@ -29,3 +29,8 @@ export const getCurrentCompany = () => {
     "uid": Cookies.get("_uid")
   }})
 }
+
+// IDから企業情報を取得
+export const getCompanyById = (id) => {
+  return client.get(`companies/${id}`)
+}
