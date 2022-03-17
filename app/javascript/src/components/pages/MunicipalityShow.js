@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom"
 import styled from 'styled-components'
 
 import UnderlineText from '../utils/UnderlineText'
 import SearchForm from '../utils/SearchForm'
 import Project from '../../components/utils/Project'
 import categories from '../../lib/data/categories'
+import { getMunicipalityById } from '../../lib/api/municipality'
 
 const AllContents = styled.div`
 width: 1200px;
@@ -90,6 +92,13 @@ function MunicipalityShow() {
   const [menu, setMenu] = useState("projects")
   const [municipality, setMunicipality] = useState({})
   const projects = []
+  const id = useParams().id
+
+  useEffect(async () => {
+    const res = await getMunicipalityById(id)
+    console.log(res.data)
+    setMunicipality(res.data)
+  }, [])
 
   return (
     <AllContents>
