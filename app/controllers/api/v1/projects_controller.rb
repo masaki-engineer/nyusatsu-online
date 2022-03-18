@@ -29,6 +29,14 @@ class Api::V1::ProjectsController < ApplicationController
     render json: project
   end
 
+  def destroy
+    if Project.destroy(params[:id])
+      head :no_content
+    else
+      render json: { error: "Failed to destroy" }, status: 422
+    end
+  end
+
   private
 
   def project_params

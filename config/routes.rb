@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
       get '/projects/recent', to: 'projects#recent'
       get '/projects/search', to: 'projects#search'
-      resources :projects, only: [:create, :show]
+      resources :projects, only: [:create, :show, :destroy]
 
     end
   end
