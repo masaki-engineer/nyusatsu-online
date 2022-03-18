@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { getProjectById } from "../../lib/api/project"
+import { deleteProjectById, getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
 import categories from '../../lib/data/categories'
@@ -232,7 +232,7 @@ function ShowProject() {
               <DeleteBox>
                 <DeleteMessage>本当に削除しますか？</DeleteMessage>
                 <DoNotDelete onClick={() => setIsDeletable(false)}>削除しない</DoNotDelete>
-                <DoDelete>削除する</DoDelete>
+                <DoDelete onClick={() => deleteProjectById(project.id)}>削除する</DoDelete>
               </DeleteBox>
             ) : (
               <></>
