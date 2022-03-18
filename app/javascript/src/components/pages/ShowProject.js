@@ -109,6 +109,7 @@ const DeleteMessage = styled.div`
 color: #c62c2c;
 font-size: 16px;
 font-weight: bold;
+text-align: center;
 margin-bottom: 3px;
 `
 
@@ -118,7 +119,7 @@ color: #c62c2c;
 border: none;
 font-size: 13px;
 font-weight: bold;
-width: 80px;
+width: 85px;
 height: 30px;
 border-radius: 3px;
 padding: 5px;
@@ -136,11 +137,10 @@ color: #c62c2c;
 border: none;
 font-size: 13px;
 font-weight: bold;
-width: 80px;
+width: 85px;
 height: 30px;
 border-radius: 3px;
 padding: 5px;
-margin-right: 10px; 
 cursor: pointer;
 :hover {
   background: #c62c2c;
@@ -181,7 +181,6 @@ function ShowProject() {
     try {
       const res = await deleteProjectById(id)
       console.log(res)
-
       if (res.status === 204) {
         navigate("/municipality/my_page")
         console.log(`Project id:${id} deleted in successfully!`)
