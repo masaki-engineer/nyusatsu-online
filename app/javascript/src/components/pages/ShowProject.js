@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
 
@@ -114,6 +115,14 @@ font-size: 14px;
 
 function ShowProject() {
   const [project, setProject] = useState({})
+  const id = useParams().id
+
+  useEffect(async () => {
+    const res = await getProjectById(id)
+    console.log(res.data)
+    setProject(res.data)
+  }, [])
+
   return (
     <AllContents>
       <Header>
