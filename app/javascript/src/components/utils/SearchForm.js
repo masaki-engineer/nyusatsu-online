@@ -8,7 +8,7 @@ import prefectures from '../../lib/data/prefectures'
 import { formToQuery, queryToForm } from '../../lib/function/search'
 
 const Contents = styled.div`
-width: calc(100% - 20px);
+width: 100%;
 padding: 5px 0;
 margin: 10px auto;
 `
