@@ -225,14 +225,18 @@ function ShowProject() {
             <Link to="#">
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
-            <Link to="#">
+            <div onClick={() => setIsDeletable(true)}>
               <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
-            </Link>
-            <DeleteBox>
-              <DeleteMessage>本当に削除しますか？</DeleteMessage>
-              <DoNotDelete>削除しない</DoNotDelete>
-              <DoDelete>削除する</DoDelete>
-            </DeleteBox>
+              </div>
+            {(isDeletable) ? (
+              <DeleteBox>
+                <DeleteMessage>本当に削除しますか？</DeleteMessage>
+                <DoNotDelete onClick={() => setIsDeletable(false)}>削除しない</DoNotDelete>
+                <DoDelete>削除する</DoDelete>
+              </DeleteBox>
+            ) : (
+              <></>
+            )}
           </Buttons>
           <Contact>
             <ContactTitle>お問い合わせ</ContactTitle>
