@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { deleteProjectById, getProjectById } from "../../lib/api/project"
@@ -176,6 +176,23 @@ function ShowProject() {
     setProject(res.data)
   }, [])
 
+  const navigate = useNavigate()
+  const doDelete = async() => {
+    try {
+      const res = await deleteProjectById(id)
+      console.log(res)
+
+      if (res.status === 204) {
+        navigate("/municipality/my_page")
+        console.log(`Project id:${id} deleted in successfully!`)
+      } else {
+        console.log(`Project id:${id} deleted in failed!`)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
   return (
     <AllContents>
       <Header>
@@ -232,7 +249,7 @@ function ShowProject() {
               <DeleteBox>
                 <DeleteMessage>本当に削除しますか？</DeleteMessage>
                 <DoNotDelete onClick={() => setIsDeletable(false)}>削除しない</DoNotDelete>
-                <DoDelete onClick={() => deleteProjectById(project.id)}>削除する</DoDelete>
+                <DoDelete onClick={() => doDelete()}>削除する</DoDelete>
               </DeleteBox>
             ) : (
               <></>
