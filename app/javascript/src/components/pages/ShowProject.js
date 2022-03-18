@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
+import categories from '../../lib/data/categories'
 
 const AllContents = styled.div`
 background: #ffffff;
@@ -127,19 +128,19 @@ function ShowProject() {
     <AllContents>
       <Header>
         <Status>入札受付中</Status>
-        <ProjectName>{"testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"}</ProjectName>
+        <ProjectName>{project.name}</ProjectName>
         <Subs>
-          <Link to="#">
-            <Municipality>{"test"}</Municipality>
+          <Link to={`/municipality/${project.municipalityId}`}>
+            <Municipality>{project.municipalityName}</Municipality>
           </Link>
-          <Link to="#">
-            <Category>{"test"}</Category>
+          <Link to={`/projects/search?category_id=${project.categoryId}`}>
+            <Category>{categories[project.categoryId]}</Category>
           </Link>
           <Dates>
             <DateName>登録日</DateName>
-            <Date>{"test"}</Date>
+            <Date>{project.createDate}</Date>
             <DateName>入札日</DateName>
-            <Date>{"test"}</Date>
+            <Date>{project.bitDate}</Date>
           </Dates>
         </Subs>
       </Header>
@@ -148,11 +149,17 @@ function ShowProject() {
 
         <Infos>
           <UnderlineText text={'入札参加資格'} />
-          <Info>{"testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"}</Info>
+          <Info>{project.qualification}</Info>
           <UnderlineText text={'案件概要'} />
           <Info>
-            {"testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"}<br/>
-            ［参考URL］<Link to="#">{"test"}</Link>
+            {project.overview}
+            {(project.url !== "") ? (
+              <>
+                <br/>［参考URL］{project.url}
+              </>
+            ) : (
+              <></>
+            )}
           </Info>
           <UnderlineText text={'落札情報'} />
           <Info>{"test株式会社：12,345,678 円"}</Info>
@@ -173,11 +180,11 @@ function ShowProject() {
           <Contact>
             <ContactTitle>お問い合わせ</ContactTitle>
             <ContactInfo>
-              {"test"}<br/>
-              {"test"}<br/>
-              {"test"}<br/>
-              tel：{"test"}<br/>
-              mail：{"test"}<br/>
+              {project.municipalityName}役所<br/>
+              {project.repDivision}<br/>
+              {project.repPerson}<br/>
+              tel：{project.phoneNumber}<br/>
+              mail：{project.email}<br/>
             </ContactInfo>
           </Contact>
         </SideBar>
