@@ -19,15 +19,17 @@ display: flex;
 const SideBar = styled.div`
 width: 300px;
 border-right: solid 1px gray;
+padding: 0 15px;
 `
 
 const Content = styled.div`
 width: 900px;
+padding: 0 15px;
 `
 
 const Projects = styled.div`
 width: 860px;
-margin: 20px;
+margin: 20px 5px;
 `
 
 function SearchProjects() {

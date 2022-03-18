@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'projects/search', to: 'site#index'
   get 'municipality/:id', to: 'site#index'
   get 'company/:id', to: 'site#index'
+  get 'projects/:id', to: 'site#index'
 
   namespace :api do
     namespace :v1 do
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
 
       get '/projects/recent', to: 'projects#recent'
       get '/projects/search', to: 'projects#search'
-      resources :projects, only: [:create]
+      resources :projects, only: [:create, :show]
 
     end
   end

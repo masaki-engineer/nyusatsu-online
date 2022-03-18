@@ -17,6 +17,7 @@ import CompanyMyPage from './components/pages/CompanyMyPage'
 import SearchProjects from './components/pages/SearchProjects'
 import MunicipalityShow from './components/pages/MunicipalityShow'
 import CompanyShow from './components/pages/CompanyShow'
+import ShowProject from './components/pages/ShowProject'
 
 export const AuthContext = createContext()
 
@@ -99,6 +100,7 @@ function App() {
           <Route exact path="/projects/search" element={<SearchProjects />} />
           <Route exact path="/municipality/:id" element={<MunicipalityShow />} />
           <Route exact path="/company/:id" element={<CompanyShow />} />
+          <Route exact path="/projects/:id" element={<ShowProject />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>

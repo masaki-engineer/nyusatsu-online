@@ -73,23 +73,23 @@ margin: auto 30px auto 0;
 
 function Project(props) {
   return (
-    <Row>
-      <Link to="#">
+    <Link to={`/projects/${props.id}`}>
+      <Row>
         <Name>{props.name}</Name>
-      </Link>
-      <BottomBox>
-        <MunicipalityAndCategory>
-          <Municipality>{props.municipalityName}</Municipality>
-          <Category>{props.category}</Category>
-        </MunicipalityAndCategory>
-        <Dates>
-          <DateName>登録日</DateName>
-          <Date>{props.createDate}</Date>
-          <DateName>入札日</DateName>
-          <Date>{props.bidDate}</Date>
-        </Dates>
-      </BottomBox>
-    </Row>
+        <BottomBox>
+          <MunicipalityAndCategory>
+            <Municipality>{props.municipalityName}</Municipality>
+            <Category>{props.category}</Category>
+          </MunicipalityAndCategory>
+          <Dates>
+            <DateName>登録日</DateName>
+            <Date>{props.createDate}</Date>
+            <DateName>入札日</DateName>
+            <Date>{props.bidDate}</Date>
+          </Dates>
+        </BottomBox>
+      </Row>
+    </Link>
   )
 }
 
