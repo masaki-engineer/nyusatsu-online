@@ -19,3 +19,8 @@ export const searchProjects = (query) => {
 export const getProjectById = (id) => {
   return client.get(`projects/${id}`)
 }
+
+// IDから案件を削除
+export const deleteProjectById = (id) => {
+  return client.delete(`projects/${id}`)
+}
