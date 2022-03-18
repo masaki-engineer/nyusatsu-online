@@ -98,6 +98,56 @@ const Buttons = styled.div`
 margin-bottom: 20px;
 `
 
+const DeleteBox = styled.div`
+background: #ffe0e0;
+width: 200px;
+border-radius: 5px;
+padding: 10px;
+`
+
+const DeleteMessage = styled.div`
+color: #c62c2c;
+font-size: 16px;
+font-weight: bold;
+margin-bottom: 3px;
+`
+
+const DoNotDelete = styled.button`
+background: #ffffff;
+color: #c62c2c;
+border: none;
+font-size: 13px;
+font-weight: bold;
+width: 80px;
+height: 30px;
+border-radius: 3px;
+padding: 5px;
+margin-right: 10px; 
+cursor: pointer;
+:hover {
+  background: #c62c2c;
+  color: #ffffff;
+}
+`
+
+const DoDelete = styled.button`
+background: #ffffff;
+color: #c62c2c;
+border: none;
+font-size: 13px;
+font-weight: bold;
+width: 80px;
+height: 30px;
+border-radius: 3px;
+padding: 5px;
+margin-right: 10px; 
+cursor: pointer;
+:hover {
+  background: #c62c2c;
+  color: #ffffff;
+}
+`
+
 const Contact = styled.div`
 background: #f5f5f5;
 width: 200px;
@@ -177,6 +227,11 @@ function ShowProject() {
             <Link to="#">
               <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
+            <DeleteBox>
+              <DeleteMessage>本当に削除しますか？</DeleteMessage>
+              <DoNotDelete>削除しない</DoNotDelete>
+              <DoDelete>削除する</DoDelete>
+            </DeleteBox>
           </Buttons>
           <Contact>
             <ContactTitle>お問い合わせ</ContactTitle>
