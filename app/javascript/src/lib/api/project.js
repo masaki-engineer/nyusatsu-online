@@ -14,3 +14,8 @@ export const getRecentProjects = () => {
 export const searchProjects = (query) => {
   return client.get(`projects/search${query}`)
 }
+
+// IDから案件情報を取得
+export const getProjectById = (id) => {
+  return client.get(`projects/${id}`)
+}
