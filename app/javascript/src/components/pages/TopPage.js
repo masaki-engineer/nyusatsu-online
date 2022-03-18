@@ -24,10 +24,11 @@ display: flex;
 const SideBar = styled.div`
 width: 300px;
 border-right: solid 1px gray;
+padding: 0 15px;
 `
 
 const CategoryLists = styled.ul`
-margin: 0 15px;
+margin: 0 5px;
 `
 
 const CategoryList = styled.li`
@@ -41,16 +42,16 @@ list-style: none;
 
 const Content = styled.div`
 width: 900px;
+padding: 0 15px;
 `
 
 const TopImgBox = styled.img`
-width: calc(100% - 20px);
-margin: 10px;
+width: 100%;
 `
 
 const Areas = styled.div`
 width: 860px;
-margin: 20px;
+margin: 20px 5px;
 border-top: solid 1px #a9a9a9;
 border-right: solid 1px #a9a9a9;
 border-left: solid 1px #a9a9a9;
@@ -58,7 +59,7 @@ border-left: solid 1px #a9a9a9;
 
 const Projects = styled.div`
 width: 860px;
-margin: 20px;
+margin: 20px 5px;
 `
 
 const BottomContents = styled.div`
