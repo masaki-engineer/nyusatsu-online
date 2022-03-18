@@ -86,6 +86,7 @@ padding-left: 30px;
 const Info = styled.div`
 font-size: 15px;
 overflow-wrap: break-word;
+white-space: pre-wrap;
 `
 
 const SideBar = styled.div`
