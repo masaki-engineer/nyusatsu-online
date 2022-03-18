@@ -167,6 +167,7 @@ font-size: 14px;
 
 function ShowProject() {
   const [project, setProject] = useState({})
+  const [isDeletable, setIsDeletable] = useState(false)
   const id = useParams().id
 
   useEffect(async () => {
