@@ -12,12 +12,12 @@ import prefectures from '../../lib/data/prefectures'
 const Contents = styled.div`
 background: #ffffff;
 width: 1200px;
-padding: 30px 0;
+padding: 30px;
 margin: 0 auto;
 `
 
 const Row = styled.div`
-margin: 30px 20px;
+margin: 30px 5px;
 width: 1100px;
 height: 50px;
 display: flex;
