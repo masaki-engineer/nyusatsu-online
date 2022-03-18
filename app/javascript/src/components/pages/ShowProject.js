@@ -140,7 +140,7 @@ function ShowProject() {
             <DateName>登録日</DateName>
             <Date>{project.createDate}</Date>
             <DateName>入札日</DateName>
-            <Date>{project.bitDate}</Date>
+            <Date>{project.bidDate}</Date>
           </Dates>
         </Subs>
       </Header>
