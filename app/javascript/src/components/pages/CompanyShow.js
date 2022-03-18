@@ -62,11 +62,12 @@ display: flex;
 
 const ProfileInfos = styled.div`
 width: 100%;
+padding: 0 30px;
 `
 
 const Profile = styled.div`
 font-size: 15px;
-margin-left: 15px;
+margin-left: 5px;
 `
 
 function CompanyShow() {
