@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 
 const AllContents = styled.div`
@@ -138,6 +140,15 @@ transition: 0.5s;
 `
 
 function NewBid() {
+  const [project, setProject] = useState({})
+  const id = useParams().project_id
+
+  useEffect(async () => {
+    const res = await getProjectById(id)
+    console.log(res.data)
+    setProject(res.data)
+  }, [])
+
   return (
     <AllContents>
       <ProjectDetails>
