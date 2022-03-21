@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { AuthContext } from "../../App"
@@ -147,6 +147,7 @@ transition: 0.5s;
 
 function NewBid() {
   const { currentCompany } = useContext(AuthContext)
+  const navigate = useNavigate()
   const [project, setProject] = useState({})
   const id = useParams().project_id
   const [form, setForm] = useState({
@@ -177,6 +178,7 @@ function NewBid() {
       console.log(res)
 
       if (res.status === 200) {
+        navigate(`/projects/${id}`)
         console.log("Project created in successfully!")
       } else {
         console.log("Project created in failed!")
