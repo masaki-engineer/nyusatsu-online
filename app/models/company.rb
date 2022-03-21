@@ -13,4 +13,6 @@ class Company < ActiveRecord::Base
   validates :city,          presence: true
   validates :addresses,     presence: true
   validates :phone_number,  presence: true
+  
+  has_many :bids
 end

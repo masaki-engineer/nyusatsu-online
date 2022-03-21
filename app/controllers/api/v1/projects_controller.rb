@@ -26,6 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
     project = convert_for_front(
       [Project.includes(:municipality).find(params[:id])]
     )[0]
+    project[:bids] = Bid.where(project_id: params[:id])
     render json: project
   end
 

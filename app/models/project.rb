@@ -10,6 +10,7 @@ class Project < ApplicationRecord
   validates :email,         presence: true
 
   belongs_to :municipality
+  has_many :bids
 
   scope :search, -> (search_params) do
     return if search_params.blank?

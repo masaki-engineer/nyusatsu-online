@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { AuthContext } from "../../App"
 import { deleteProjectById, getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
@@ -98,6 +99,20 @@ const Buttons = styled.div`
 margin-bottom: 20px;
 `
 
+const IsBided = styled.div`
+background: #a9a9a9;
+color: #ffffff;
+border: none;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+width: 200px;
+height: 50px;
+border-radius: 5px;
+padding: 13px;
+margin: 20px auto 10px auto;
+`
+
 const DeleteBox = styled.div`
 background: #ffe0e0;
 width: 200px;
@@ -166,14 +181,21 @@ font-size: 14px;
 `
 
 function ShowProject() {
+  const { currentCompany, isMunicipalitySignedIn } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const [isDeletable, setIsDeletable] = useState(false)
+  const [isBided, setIsBided] = useState(false)
   const id = useParams().id
 
   useEffect(async () => {
     const res = await getProjectById(id)
     console.log(res.data)
     setProject(res.data)
+
+    const biddingCompanyIds = res.data.bids.map(bid => bid.companyId)
+    if (biddingCompanyIds.includes(currentCompany.id)) {
+      setIsBided(true)
+    }
   }, [])
 
   const navigate = useNavigate()
@@ -235,15 +257,23 @@ function ShowProject() {
 
         <SideBar>
           <Buttons>
-            <Link to="#">
-              <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
-            </Link>
+
+            {(isMunicipalitySignedIn) ? (<></>) : 
+            (isBided) ? (
+              <IsBided>入札済み</IsBided>
+            ) : (
+              <Link to={`/projects/${id}/bids/new`}>
+                <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
+              </Link>
+            )}
+
             <Link to="#">
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
+
             <div onClick={() => setIsDeletable(true)}>
               <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
-              </div>
+            </div>
             {(isDeletable) ? (
               <DeleteBox>
                 <DeleteMessage>本当に削除しますか？</DeleteMessage>
@@ -253,6 +283,7 @@ function ShowProject() {
             ) : (
               <></>
             )}
+            
           </Buttons>
           <Contact>
             <ContactTitle>お問い合わせ</ContactTitle>
