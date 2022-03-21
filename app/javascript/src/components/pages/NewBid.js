@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { AuthContext } from "../../App"
 import { getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import categories from '../../lib/data/categories'
@@ -143,14 +144,29 @@ transition: 0.5s;
 `
 
 function NewBid() {
+  const { currentCompany } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const id = useParams().project_id
+  const [form, setForm] = useState({
+    repDivision: "",
+    repPerson: "",
+    phoneNumber: "",
+    email: "",
+    price: "",
+    companyId: currentCompany.id,
+    projectId: id
+  })
 
   useEffect(async () => {
     const res = await getProjectById(id)
     console.log(res.data)
     setProject(res.data)
   }, [])
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
 
   return (
     <AllContents>
@@ -188,6 +204,8 @@ function NewBid() {
           </TitleBox>
           <FormBox
             type="text"
+            value={form.repDivision}
+            onChange={handleChange('repDivision')}
           />
         </Row>
 
@@ -198,6 +216,8 @@ function NewBid() {
           </TitleBox>
           <FormBox
             type="text"
+            value={form.repPerson}
+            onChange={handleChange('repPerson')}
           />
         </Row>
 
@@ -208,6 +228,8 @@ function NewBid() {
           </TitleBox>
           <FormBox
             type="text"
+            value={form.phoneNumber}
+            onChange={handleChange('phoneNumber')}
           />
         </Row>
 
@@ -218,6 +240,8 @@ function NewBid() {
           </TitleBox>
           <FormBox
             type="text"
+            value={form.email}
+            onChange={handleChange('email')}
           />
         </Row>
 
@@ -228,6 +252,8 @@ function NewBid() {
           </TitleBox>
           <FormBox
             type="text"
+            value={form.price}
+            onChange={handleChange('price')}
           />
         </Row>
 
