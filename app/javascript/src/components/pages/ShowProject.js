@@ -235,7 +235,7 @@ function ShowProject() {
 
         <SideBar>
           <Buttons>
-            <Link to="#">
+            <Link to={`/projects/${id}/bids/new`}>
               <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
             </Link>
             <Link to="#">
