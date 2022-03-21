@@ -221,7 +221,7 @@ function NewBid() {
           <TitleBox>
             <Title>企業名</Title>
           </TitleBox>
-          <CompanyName>◯◯株式会社</CompanyName>
+          <CompanyName>{currentCompany.name}</CompanyName>
         </Row>
 
         <Row>
