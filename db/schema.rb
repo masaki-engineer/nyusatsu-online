@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_21_012413) do
+ActiveRecord::Schema.define(version: 2022_03_21_092118) do
 
   create_table "bids", charset: "utf8", force: :cascade do |t|
     t.string "rep_division", null: false
@@ -103,7 +103,21 @@ ActiveRecord::Schema.define(version: 2022_03_21_012413) do
     t.index ["municipality_id"], name: "index_projects_on_municipality_id"
   end
 
+  create_table "successes", charset: "utf8", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "project_id", null: false
+    t.bigint "bid_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bid_id"], name: "index_successes_on_bid_id"
+    t.index ["company_id"], name: "index_successes_on_company_id"
+    t.index ["project_id"], name: "index_successes_on_project_id"
+  end
+
   add_foreign_key "bids", "companies"
   add_foreign_key "bids", "projects"
   add_foreign_key "projects", "municipalities"
+  add_foreign_key "successes", "bids"
+  add_foreign_key "successes", "companies"
+  add_foreign_key "successes", "projects"
 end
