@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { AuthContext } from "../../App"
 import { getProjectById } from "../../lib/api/project"
+import { createBid } from "../../lib/api/bid"
 import UnderlineText from '../../components/utils/UnderlineText'
 import categories from '../../lib/data/categories'
 
@@ -168,6 +169,21 @@ function NewBid() {
     console.log(form)
   }
 
+  const handleSubmit = async () => {
+    try {
+      const res = await createBid(form)
+      console.log(res)
+
+      if (res.status === 200) {
+        console.log("Project created in successfully!")
+      } else {
+        console.log("Project created in failed!")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <AllContents>
       <ProjectDetails>
@@ -257,7 +273,7 @@ function NewBid() {
           />
         </Row>
 
-        <SubmitButton>入札登録</SubmitButton>
+        <SubmitButton onClick={handleSubmit}>入札登録</SubmitButton>
       </BidFormBox>
     </AllContents>
   )
