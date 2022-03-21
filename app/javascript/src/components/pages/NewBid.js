@@ -6,6 +6,7 @@ import { AuthContext } from "../../App"
 import { getProjectById } from "../../lib/api/project"
 import { createBid } from "../../lib/api/bid"
 import UnderlineText from '../../components/utils/UnderlineText'
+import ErrorMessage from '../../components/utils/ErrorMessage'
 import categories from '../../lib/data/categories'
 
 const AllContents = styled.div`
@@ -157,6 +158,7 @@ function NewBid() {
     companyId: currentCompany.id,
     projectId: id
   })
+  const [errorMessageOpen, setErrorMessageOpen] = useState(false)
 
   useEffect(async () => {
     const res = await getProjectById(id)
@@ -178,9 +180,11 @@ function NewBid() {
         console.log("Project created in successfully!")
       } else {
         console.log("Project created in failed!")
+        setErrorMessageOpen(true)
       }
     } catch (err) {
       console.log(err)
+      setErrorMessageOpen(true)
     }
   }
 
@@ -205,6 +209,11 @@ function NewBid() {
 
       <BidFormBox>
         <UnderlineText text={'入札フォーム'} />
+
+        <ErrorMessage // エラーが発生した場合はアラートを表示
+        open={errorMessageOpen}
+        message="再度正しい情報を入力し登録してください。"
+        />
 
         <Row>
           <TitleBox>
