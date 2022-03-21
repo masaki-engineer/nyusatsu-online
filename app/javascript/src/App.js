@@ -18,6 +18,7 @@ import SearchProjects from './components/pages/SearchProjects'
 import MunicipalityShow from './components/pages/MunicipalityShow'
 import CompanyShow from './components/pages/CompanyShow'
 import ShowProject from './components/pages/ShowProject'
+import NewBid from './components/pages/NewBid'
 
 export const AuthContext = createContext()
 
@@ -101,6 +102,7 @@ function App() {
           <Route exact path="/municipality/:id" element={<MunicipalityShow />} />
           <Route exact path="/company/:id" element={<CompanyShow />} />
           <Route exact path="/projects/:id" element={<ShowProject />} />
+          <Route exact path="/projects/:project_id/bids/new" element={<NewBid />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
