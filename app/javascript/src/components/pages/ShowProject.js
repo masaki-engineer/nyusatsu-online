@@ -98,6 +98,20 @@ const Buttons = styled.div`
 margin-bottom: 20px;
 `
 
+const IsBided = styled.div`
+background: #a9a9a9;
+color: #ffffff;
+border: none;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+width: 200px;
+height: 50px;
+border-radius: 5px;
+padding: 13px;
+margin: 20px auto 10px auto;
+`
+
 const DeleteBox = styled.div`
 background: #ffe0e0;
 width: 200px;
@@ -238,6 +252,7 @@ function ShowProject() {
             <Link to={`/projects/${id}/bids/new`}>
               <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
             </Link>
+            <IsBided>入札済み</IsBided>
             <Link to="#">
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
