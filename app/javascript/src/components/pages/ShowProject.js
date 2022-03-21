@@ -257,16 +257,22 @@ function ShowProject() {
 
         <SideBar>
           <Buttons>
-            <Link to={`/projects/${id}/bids/new`}>
-              <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
-            </Link>
-            <IsBided>入札済み</IsBided>
+
+            {(isBided) ? (
+              <IsBided>入札済み</IsBided>
+            ) : (
+              <Link to={`/projects/${id}/bids/new`}>
+                <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
+              </Link>
+            )}
+
             <Link to="#">
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
+
             <div onClick={() => setIsDeletable(true)}>
               <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
-              </div>
+            </div>
             {(isDeletable) ? (
               <DeleteBox>
                 <DeleteMessage>本当に削除しますか？</DeleteMessage>
@@ -276,6 +282,7 @@ function ShowProject() {
             ) : (
               <></>
             )}
+            
           </Buttons>
           <Contact>
             <ContactTitle>お問い合わせ</ContactTitle>
