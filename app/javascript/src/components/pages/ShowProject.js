@@ -181,7 +181,7 @@ font-size: 14px;
 `
 
 function ShowProject() {
-  const { currentCompany } = useContext(AuthContext)
+  const { currentCompany, isMunicipalitySignedIn } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const [isDeletable, setIsDeletable] = useState(false)
   const [isBided, setIsBided] = useState(false)
@@ -258,7 +258,8 @@ function ShowProject() {
         <SideBar>
           <Buttons>
 
-            {(isBided) ? (
+            {(isMunicipalitySignedIn) ? (<></>) : 
+            (isBided) ? (
               <IsBided>入札済み</IsBided>
             ) : (
               <Link to={`/projects/${id}/bids/new`}>
