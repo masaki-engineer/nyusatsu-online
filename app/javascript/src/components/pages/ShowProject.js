@@ -181,7 +181,7 @@ font-size: 14px;
 `
 
 function ShowProject() {
-  const { currentCompany, isMunicipalitySignedIn } = useContext(AuthContext)
+  const { currentCompany, isMunicipalitySignedIn, currentMunicipality } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const [isDeletable, setIsDeletable] = useState(false)
   const [isBided, setIsBided] = useState(false)
@@ -258,7 +258,13 @@ function ShowProject() {
         <SideBar>
           <Buttons>
 
-            {(isMunicipalitySignedIn) ? (<></>) : 
+            {(isMunicipalitySignedIn) ? (
+              (project.municipalityId === currentMunicipality.id) ? (
+              <Link to={`/projects/${id}/successes/new`}>
+                <Button text={"落札企業を決定する"} background={"#d68b2d"} hover={"#f4a84c"}/>
+              </Link>
+              ) : (<></>)
+            ) : 
             (isBided) ? (
               <IsBided>入札済み</IsBided>
             ) : (
