@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
+import categories from '../../lib/data/categories'
 
 const AllContents = styled.div`
 background: #ffffff;
@@ -21,6 +22,7 @@ display: flex;
 
 const BasicInfos = styled.div`
 max-width: 50%;
+min-width: 35%;
 padding-right: 20px;
 `
 
@@ -70,6 +72,7 @@ overflow: hidden;
 display: -webkit-box;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 5;
+white-space: pre-wrap;
 `
 
 const BidFormBox = styled.div`
@@ -153,19 +156,19 @@ function NewBid() {
     <AllContents>
       <ProjectDetails>
         <BasicInfos>
-          <ProjectName>{`props.name`}</ProjectName>
+          <ProjectName>{project.name}</ProjectName>
           <MunicipalityAndCategory>
-            <Municipality>{`props.municipalityName`}</Municipality>
-            <Category>{`props.category`}</Category>
+            <Municipality>{project.municipalityName}</Municipality>
+            <Category>{categories[project.categoryId]}</Category>
           </MunicipalityAndCategory>
           <Dates>
             <DateName>登録日</DateName>
-            <Date>{`props.createDate`}</Date>
+            <Date>{project.createDate}</Date>
             <DateName>入札日</DateName>
-            <Date>{`props.bidDate`}</Date>
+            <Date>{project.bidDate}</Date>
           </Dates>
         </BasicInfos>
-        <Overview>{`props.overview`}</Overview>
+        <Overview>{project.overview}</Overview>
       </ProjectDetails>
 
       <BidFormBox>
