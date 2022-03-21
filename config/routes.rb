@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get '/projects/search', to: 'projects#search'
       resources :projects, only: [:create, :show, :destroy] do
         resources :bids, only: [:create]
+        resources :successes, only: [:create]
       end
 
     end
