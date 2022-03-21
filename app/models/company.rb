@@ -15,4 +15,5 @@ class Company < ActiveRecord::Base
   validates :phone_number,  presence: true
   
   has_many :bids
+  has_many :successes
 end
