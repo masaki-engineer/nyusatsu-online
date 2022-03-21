@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { AuthContext } from "../../App"
 import { deleteProjectById, getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
@@ -180,6 +181,7 @@ font-size: 14px;
 `
 
 function ShowProject() {
+  const { currentCompany } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const [isDeletable, setIsDeletable] = useState(false)
   const [isBided, setIsBided] = useState(false)
@@ -189,6 +191,11 @@ function ShowProject() {
     const res = await getProjectById(id)
     console.log(res.data)
     setProject(res.data)
+
+    const biddingCompanyIds = res.data.bids.map(bid => bid.companyId)
+    if (biddingCompanyIds.includes(currentCompany.id)) {
+      setIsBided(true)
+    }
   }, [])
 
   const navigate = useNavigate()
