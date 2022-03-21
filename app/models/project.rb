@@ -11,7 +11,6 @@ class Project < ApplicationRecord
 
   belongs_to :municipality
   has_many :bids
-  has_one :success
 
   scope :search, -> (search_params) do
     return if search_params.blank?
