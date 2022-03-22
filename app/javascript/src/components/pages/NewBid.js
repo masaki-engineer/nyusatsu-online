@@ -116,9 +116,9 @@ function NewBid() {
 
       if (res.status === 200) {
         navigate(`/projects/${id}`)
-        console.log("Project created in successfully!")
+        console.log("Bid created in successfully!")
       } else {
-        console.log("Project created in failed!")
+        console.log("Bid created in failed!")
         setErrorMessageOpen(true)
       }
     } catch (err) {

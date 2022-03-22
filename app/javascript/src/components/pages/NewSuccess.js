@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { getProjectById } from "../../lib/api/project"
+import { createSuccess } from "../../lib/api/success"
 import UnderlineText from '../../components/utils/UnderlineText'
 import ProjectDetails from '../../components/utils/ProjectDetails'
 
@@ -119,6 +120,21 @@ function NewSuccess() {
     console.log(form)
   }
 
+  const handleSubmit = async () => {
+    try {
+      const res = await createSuccess(form)
+      console.log(res)
+
+      if (res.status === 200) {
+        console.log("Success created in successfully!")
+      } else {
+        console.log("Success created in failed!")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <AllContents>
       <ProjectDetails project={project}/>
@@ -140,7 +156,7 @@ function NewSuccess() {
           ))
         ) : (<></>)
         }
-        <SubmitButton>決定</SubmitButton>
+        <SubmitButton onClick={handleSubmit}>決定</SubmitButton>
       </SuccessFormBox>
     </AllContents>
   )
