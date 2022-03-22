@@ -6,6 +6,7 @@ import { AuthContext } from "../../App"
 import { deleteProjectById, getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
+import StatusBar from '../../components/utils/StatusBar'
 import categories from '../../lib/data/categories'
 
 const AllContents = styled.div`
@@ -17,17 +18,6 @@ margin: 0 auto;
 const Header = styled.div`
 width: 100%;
 padding: 20px 30px;
-`
-
-const Status = styled.div`
-background: #0ba71b;
-font-size: 13px;
-color: #ffffff;
-height: 25px;
-border-radius: 5px;
-padding: 3px 10px;
-margin-bottom: 10px;
-display: inline;
 `
 
 const ProjectName = styled.div`
@@ -99,7 +89,7 @@ const Buttons = styled.div`
 margin-bottom: 20px;
 `
 
-const IsBided = styled.div`
+const GrayButton = styled.div`
 background: #a9a9a9;
 color: #ffffff;
 border: none;
@@ -181,7 +171,7 @@ font-size: 14px;
 `
 
 function ShowProject() {
-  const { currentCompany, isMunicipalitySignedIn } = useContext(AuthContext)
+  const { isCompanySignedIn, currentCompany, isMunicipalitySignedIn, currentMunicipality } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const [isDeletable, setIsDeletable] = useState(false)
   const [isBided, setIsBided] = useState(false)
@@ -193,8 +183,10 @@ function ShowProject() {
     setProject(res.data)
 
     const biddingCompanyIds = res.data.bids.map(bid => bid.companyId)
-    if (biddingCompanyIds.includes(currentCompany.id)) {
-      setIsBided(true)
+    if (isCompanySignedIn) {
+      if (biddingCompanyIds.includes(currentCompany.id)) {
+        setIsBided(true)
+      }
     }
   }, [])
 
@@ -217,7 +209,15 @@ function ShowProject() {
   return (
     <AllContents>
       <Header>
-        <Status>入札受付中</Status>
+        {(project.hasSuccess) ? (
+          <>
+            <StatusBar status={"落札結果あり"} />
+          </>
+        ) : (
+          <>
+            <StatusBar status={"入札受付中"} />
+          </>
+        )}
         <ProjectName>{project.name}</ProjectName>
         <Subs>
           <Link to={`/municipality/${project.municipalityId}`}>
@@ -251,29 +251,58 @@ function ShowProject() {
               <></>
             )}
           </Info>
-          <UnderlineText text={'落札情報'} />
-          <Info>{"test株式会社：12,345,678 円"}</Info>
+          {(project.hasSuccess) ? (
+            <>
+              <UnderlineText text={'落札情報'} />
+              <Info>{`${project.successBid.name}：${project.successBid.price.toLocaleString()} 円`}</Info>
+            </>
+          ) : (
+            <></>
+          )}
         </Infos>
 
         <SideBar>
           <Buttons>
 
-            {(isMunicipalitySignedIn) ? (<></>) : 
-            (isBided) ? (
-              <IsBided>入札済み</IsBided>
+            {(isMunicipalitySignedIn) ? (
+              (project.municipalityId === currentMunicipality.id) ? (
+                (project.hasSuccess) ? (
+                  <GrayButton>落札済み</GrayButton>
+                ) : (
+                <Link to={`/projects/${id}/successes/new`}>
+                  <Button text={"落札企業を決定する"} background={"#d68b2d"} hover={"#f4a84c"}/>
+                </Link>
+                )
+              ) : (<></>)
+            ) : (project.hasSuccess) ? (
+              <GrayButton>落札済み</GrayButton>
             ) : (
-              <Link to={`/projects/${id}/bids/new`}>
-                <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
-              </Link>
+              (isBided) ? (
+                <GrayButton>入札済み</GrayButton>
+              ) : (
+                <Link to={`/projects/${id}/bids/new`}>
+                  <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
+                </Link>
+              )
             )}
 
             <Link to="#">
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
 
-            <div onClick={() => setIsDeletable(true)}>
-              <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
-            </div>
+            {(project.hasSuccess) ? (
+              <></>
+            ) : (isMunicipalitySignedIn) ? (
+              (project.municipalityId === currentMunicipality.id) ? (
+                <div onClick={() => setIsDeletable(true)}>
+                  <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
+                </div>
+              ) : (
+                <></>
+              )
+            ) : (
+              <></>
+            )}
             {(isDeletable) ? (
               <DeleteBox>
                 <DeleteMessage>本当に削除しますか？</DeleteMessage>
