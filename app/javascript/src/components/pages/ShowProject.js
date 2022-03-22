@@ -6,6 +6,7 @@ import { AuthContext } from "../../App"
 import { deleteProjectById, getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import Button from '../utils/Button'
+import StatusBar from '../../components/utils/StatusBar'
 import categories from '../../lib/data/categories'
 
 const AllContents = styled.div`
@@ -17,17 +18,6 @@ margin: 0 auto;
 const Header = styled.div`
 width: 100%;
 padding: 20px 30px;
-`
-
-const Status = styled.div`
-background: #0ba71b;
-font-size: 13px;
-color: #ffffff;
-height: 25px;
-border-radius: 5px;
-padding: 3px 10px;
-margin-bottom: 10px;
-display: inline;
 `
 
 const ProjectName = styled.div`
@@ -219,7 +209,15 @@ function ShowProject() {
   return (
     <AllContents>
       <Header>
-        <Status>入札受付中</Status>
+        {(project.hasSuccess) ? (
+          <>
+            <StatusBar status={"落札結果あり"} />
+          </>
+        ) : (
+          <>
+            <StatusBar status={"入札受付中"} />
+          </>
+        )}
         <ProjectName>{project.name}</ProjectName>
         <Subs>
           <Link to={`/municipality/${project.municipalityId}`}>
