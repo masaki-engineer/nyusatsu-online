@@ -181,7 +181,7 @@ font-size: 14px;
 `
 
 function ShowProject() {
-  const { currentCompany, isMunicipalitySignedIn, currentMunicipality } = useContext(AuthContext)
+  const { isCompanySignedIn, currentCompany, isMunicipalitySignedIn, currentMunicipality } = useContext(AuthContext)
   const [project, setProject] = useState({})
   const [isDeletable, setIsDeletable] = useState(false)
   const [isBided, setIsBided] = useState(false)
@@ -193,8 +193,10 @@ function ShowProject() {
     setProject(res.data)
 
     const biddingCompanyIds = res.data.bids.map(bid => bid.companyId)
-    if (biddingCompanyIds.includes(currentCompany.id)) {
-      setIsBided(true)
+    if (isCompanySignedIn) {
+      if (biddingCompanyIds.includes(currentCompany.id)) {
+        setIsBided(true)
+      }
     }
   }, [])
 
@@ -284,9 +286,19 @@ function ShowProject() {
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
 
-            <div onClick={() => setIsDeletable(true)}>
-              <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
-            </div>
+            {(project.hasSuccess) ? (
+              <></>
+            ) : (isMunicipalitySignedIn) ? (
+              (project.municipalityId === currentMunicipality.id) ? (
+                <div onClick={() => setIsDeletable(true)}>
+                  <Button text={"案件を削除する"} background={"#0156a5"} hover={"#0674da"}/>
+                </div>
+              ) : (
+                <></>
+              )
+            ) : (
+              <></>
+            )}
             {(isDeletable) ? (
               <DeleteBox>
                 <DeleteMessage>本当に削除しますか？</DeleteMessage>
