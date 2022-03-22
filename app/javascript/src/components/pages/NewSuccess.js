@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { getProjectById } from "../../lib/api/project"
@@ -104,6 +104,7 @@ transition: 0.5s;
 `
 
 function NewSuccess() {
+  const navigate = useNavigate()
   const [project, setProject] = useState({})
   const id = useParams().project_id
   const [form, setForm] = useState({bidId: ""})
@@ -127,6 +128,7 @@ function NewSuccess() {
       console.log(res)
 
       if (res.status === 200) {
+        navigate(`/projects/${id}`)
         console.log("Success created in successfully!")
       } else {
         console.log("Success created in failed!")
