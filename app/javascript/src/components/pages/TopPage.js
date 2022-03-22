@@ -183,17 +183,9 @@ function TopPage() {
           </Areas>
           <UnderlineText text={'最近登録された案件'} />
           <Projects>
-            {projects.map((val, key) => {
+            {projects.map((project) => {
               return (
-                <Project
-                  key={key}
-                  id={val.id}
-                  name={val.name}
-                  category={categories[val.categoryId]}
-                  createDate={val.createDate}
-                  bidDate={val.bidDate}
-                  municipalityName={val.municipalityName}
-                />
+                <Project project={project} />
               )
             })}
           </Projects>

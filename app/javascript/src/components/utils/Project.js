@@ -2,8 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+import StatusBar from './StatusBar'
+import categories from '../../lib/data/categories'
+
 const Row = styled.div`
-height: 120px;
 width: 100%;
 border-radius: 10px;
 border: solid 1px #e7e7e7;
@@ -22,7 +24,8 @@ overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
 width: 100%;
-margin-bottom: 10px; 
+margin-top: 3px;
+margin-bottom: 10px;
 `
 
 const BottomBox = styled.div`
@@ -35,9 +38,9 @@ display: flex;
 `
 
 const Municipality = styled.div`
-background: #d68b2d;
+background: #fdf1e2;
 font-size: 13px;
-color: #ffffff;
+color: #d38220;
 height: 28px;
 border-radius: 5px;
 padding: 5px 10px;
@@ -45,9 +48,9 @@ margin-right: 15px;
 `
 
 const Category = styled.div`
-background: #0674da;
+background: #d9ecff;
 font-size: 13px;
-color: #ffffff;
+color: #0674da;
 height: 28px;
 border-radius: 5px;
 padding: 5px 10px;
@@ -73,19 +76,28 @@ margin: auto 30px auto 0;
 
 function Project(props) {
   return (
-    <Link to={`/projects/${props.id}`}>
+    <Link to={`/projects/${props.project.id}`}>
       <Row>
-        <Name>{props.name}</Name>
+        {(props.project.hasSuccess) ? (
+          <>
+            <StatusBar status={"落札結果あり"} />
+          </>
+        ) : (
+          <>
+            <StatusBar status={"入札受付中"} />
+          </>
+        )}
+        <Name>{props.project.name}</Name>
         <BottomBox>
           <MunicipalityAndCategory>
-            <Municipality>{props.municipalityName}</Municipality>
-            <Category>{props.category}</Category>
+            <Municipality>{props.project.municipalityName}</Municipality>
+            <Category>{categories[props.project.categoryId]}</Category>
           </MunicipalityAndCategory>
           <Dates>
             <DateName>登録日</DateName>
-            <Date>{props.createDate}</Date>
+            <Date>{props.project.createDate}</Date>
             <DateName>入札日</DateName>
-            <Date>{props.bidDate}</Date>
+            <Date>{props.project.bidDate}</Date>
           </Dates>
         </BottomBox>
       </Row>
