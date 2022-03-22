@@ -70,10 +70,20 @@ class Api::V1::ProjectsController < ApplicationController
         prefecture_id: Municipality.find(project.municipality_id)[:prefecture_id],
         create_date: project.created_at.to_date,
         bids: Bid.where(project_id: project.id).order("price ASC").joins(:company).select("bids.id,company_id,price,companies.name"),
-        has_success: Success.joins(:bid).exists?(bid: {project_id: project.id})
+        has_success: Success.joins(:bid).exists?(bid: {project_id: project.id}),
+        success_bid: find_success_bid(project.id)
       }
       converted_projects.push(converted_project)
     end
     return converted_projects
+  end
+
+  def find_success_bid(project_id)
+    bids = Bid.where(project_id: project_id).joins(:company).select("bids.id,company_id,price,companies.name")
+    bids.each do |bid|
+      if Success.exists?(bid_id: bid.id)
+        return bid
+      end
+    end
   end
 end

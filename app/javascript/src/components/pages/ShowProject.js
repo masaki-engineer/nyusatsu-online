@@ -251,8 +251,14 @@ function ShowProject() {
               <></>
             )}
           </Info>
-          <UnderlineText text={'落札情報'} />
-          <Info>{"test株式会社：12,345,678 円"}</Info>
+          {(project.hasSuccess) ? (
+            <>
+              <UnderlineText text={'落札情報'} />
+              <Info>{`${project.successBid.name}：${project.successBid.price.toLocaleString()} 円`}</Info>
+            </>
+          ) : (
+            <></>
+          )}
         </Infos>
 
         <SideBar>
