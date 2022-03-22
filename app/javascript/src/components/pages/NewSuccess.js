@@ -4,75 +4,13 @@ import styled from 'styled-components'
 
 import { getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
-import categories from '../../lib/data/categories'
+import ProjectDetails from '../../components/utils/ProjectDetails'
 
 const AllContents = styled.div`
 background: #ffffff;
 width: 1200px;
 margin: 0 auto;
 padding: 50px 70px;
-`
-
-const ProjectDetails = styled.div`
-width: 100%;
-height: 100px;
-margin-bottom: 40px;
-display: flex;
-`
-
-const BasicInfos = styled.div`
-max-width: 50%;
-min-width: 35%;
-padding-right: 20px;
-`
-
-const ProjectName = styled.div`
-width: 100%;
-font-size: 30px;
-font-weight: bold;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-margin-bottom: 5px; 
-`
-
-const MunicipalityAndCategory = styled.div`
-display: flex;
-font-size: 15px;
-color: gray;
-`
-
-const Municipality = styled.div`
-margin-right: 20px;
-`
-
-const Category = styled.div`
-`
-
-const Dates = styled.div`
-display: flex;
-font-size: 15px;
-color: gray;
-`
-
-const DateName = styled.div`
-margin-right: 10px;
-`
-
-const Date = styled.div`
-margin-right: 15px;
-`
-
-const Overview = styled.div`
-font-size: 13px;
-padding-left: 10px;
-border-left: solid 1px gray;
-overflow-wrap: anywhere;
-overflow: hidden;
-display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 5;
-white-space: pre-wrap;
 `
 
 const SuccessFormBox = styled.div`
@@ -177,22 +115,7 @@ function NewSuccess() {
 
   return (
     <AllContents>
-      <ProjectDetails>
-        <BasicInfos>
-          <ProjectName>{project.name}</ProjectName>
-          <MunicipalityAndCategory>
-            <Municipality>{project.municipalityName}</Municipality>
-            <Category>{categories[project.categoryId]}</Category>
-          </MunicipalityAndCategory>
-          <Dates>
-            <DateName>登録日</DateName>
-            <Date>{project.createDate}</Date>
-            <DateName>入札日</DateName>
-            <Date>{project.bidDate}</Date>
-          </Dates>
-        </BasicInfos>
-        <Overview>{project.overview}</Overview>
-      </ProjectDetails>
+      <ProjectDetails project={project}/>
       <SuccessFormBox>
         <UnderlineText text={'落札企業を決定する'} />
         {(typeof(project.bids) === 'object') ? (
