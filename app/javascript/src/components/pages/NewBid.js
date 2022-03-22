@@ -7,6 +7,7 @@ import { getProjectById } from "../../lib/api/project"
 import { createBid } from "../../lib/api/bid"
 import UnderlineText from '../../components/utils/UnderlineText'
 import ErrorMessage from '../../components/utils/ErrorMessage'
+import ProjectDetails from '../../components/utils/ProjectDetails'
 
 const AllContents = styled.div`
 background: #ffffff;
