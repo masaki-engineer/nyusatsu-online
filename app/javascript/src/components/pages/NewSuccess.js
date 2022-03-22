@@ -105,7 +105,6 @@ transition: 0.5s;
 
 function NewSuccess() {
   const [project, setProject] = useState({})
-  const [val, setVal] = useState(3);
   const id = useParams().project_id
   const [form, setForm] = useState({bidId: ""})
 
@@ -113,6 +112,8 @@ function NewSuccess() {
     const res = await getProjectById(id)
     console.log(res.data)
     setProject(res.data)
+    const lowestBid = res.data.bids[0]
+    setForm({bidId: lowestBid.id})
   }, [])
 
   const handleChange = (input) => e => {

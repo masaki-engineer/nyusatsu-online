@@ -69,7 +69,7 @@ class Api::V1::ProjectsController < ApplicationController
         municipality_name: Municipality.find(project.municipality_id)[:name],
         prefecture_id: Municipality.find(project.municipality_id)[:prefecture_id],
         create_date: project.created_at.to_date,
-        bids: Bid.where(project_id: project.id).joins(:company).select("bids.id,company_id,price,companies.name")
+        bids: Bid.where(project_id: project.id).order("price ASC").joins(:company).select("bids.id,company_id,price,companies.name")
       }
       converted_projects.push(converted_project)
     end
