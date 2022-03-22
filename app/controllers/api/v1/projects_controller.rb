@@ -26,7 +26,6 @@ class Api::V1::ProjectsController < ApplicationController
     project = convert_for_front(
       [Project.includes(:municipality).find(params[:id])]
     )[0]
-    project[:bids] = Bid.where(project_id: params[:id])
     render json: project
   end
 
@@ -69,7 +68,8 @@ class Api::V1::ProjectsController < ApplicationController
         municipality_id: project.municipality_id,
         municipality_name: Municipality.find(project.municipality_id)[:name],
         prefecture_id: Municipality.find(project.municipality_id)[:prefecture_id],
-        create_date: project.created_at.to_date
+        create_date: project.created_at.to_date,
+        bids: Bid.where(project_id: project.id).joins(:company).select("bids.id,company_id,price,companies.name")
       }
       converted_projects.push(converted_project)
     end
