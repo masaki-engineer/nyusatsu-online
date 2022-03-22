@@ -268,13 +268,16 @@ function ShowProject() {
                 </Link>
                 )
               ) : (<></>)
-            ) : 
-            (isBided) ? (
-              <GrayButton>入札済み</GrayButton>
+            ) : (project.hasSuccess) ? (
+              <GrayButton>落札済み</GrayButton>
             ) : (
-              <Link to={`/projects/${id}/bids/new`}>
-                <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
-              </Link>
+              (isBided) ? (
+                <GrayButton>入札済み</GrayButton>
+              ) : (
+                <Link to={`/projects/${id}/bids/new`}>
+                  <Button text={"入札する"} background={"#d68b2d"} hover={"#f4a84c"}/>
+                </Link>
+              )
             )}
 
             <Link to="#">
