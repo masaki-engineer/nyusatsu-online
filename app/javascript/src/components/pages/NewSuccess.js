@@ -119,12 +119,12 @@ function NewSuccess() {
       <SuccessFormBox>
         <UnderlineText text={'落札企業を決定する'} />
         {(typeof(project.bids) === 'object') ? (
-          project.bids.map((bid, index) => (
+          project.bids.map((bid) => (
             <Label>
               <RadioButton type="radio" value={bid.id} checked={val === bid.id}/>
               <Mark />
-              <CompanyName>◯◯株式会社</CompanyName>
-              <Price>999,999,999 円</Price>
+              <CompanyName>{bid.name}</CompanyName>
+              <Price>{`${bid.price.toLocaleString()} 円`}</Price>
             </Label>
           ))
         ) : (<></>)
