@@ -106,12 +106,18 @@ function NewSuccess() {
   const [project, setProject] = useState({})
   const [val, setVal] = useState(3);
   const id = useParams().project_id
+  const [form, setForm] = useState({bidId: ""})
 
   useEffect(async () => {
     const res = await getProjectById(id)
     console.log(res.data)
     setProject(res.data)
   }, [])
+
+  const handleChange = (input) => e => {
+    setForm({...form, [input] : e.target.value})
+    console.log(form)
+  }
 
   return (
     <AllContents>
@@ -121,7 +127,12 @@ function NewSuccess() {
         {(typeof(project.bids) === 'object') ? (
           project.bids.map((bid) => (
             <Label>
-              <RadioButton type="radio" value={bid.id} checked={val === bid.id}/>
+              <RadioButton
+                type="radio"
+                value={bid.id}
+                checked={form.bidId == bid.id}
+                onChange={handleChange('bidId')}
+              />
               <Mark />
               <CompanyName>{bid.name}</CompanyName>
               <Price>{`${bid.price.toLocaleString()} 円`}</Price>
