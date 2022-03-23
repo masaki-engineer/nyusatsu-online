@@ -108,12 +108,16 @@ function CompanyMyPage() {
   return (
     <AllContents>
       <Header>
-        <UnderlineText text={'◯◯株式会社　マイページ'} />
+        <UnderlineText text={`${currentCompany.name}　マイページ`} />
         <ControlBox>
 
           <Buttons>
-            <Button text={"キーワード登録"} background={"#0156a5"} hover={"#0674da"}/>
-            <Button text={"企業トップページ"} background={"#0156a5"} hover={"#0674da"}/>
+            <Link to="/projects/search">
+              <Button text={"案件を探す"} background={"#0156a5"} hover={"#0674da"}/>
+            </Link>
+            <Link to={`/company/${id}`}>
+              <Button text={"企業トップページ"} background={"#0156a5"} hover={"#0674da"}/>
+            </Link>
           </Buttons>
 
           <StatusBox>
