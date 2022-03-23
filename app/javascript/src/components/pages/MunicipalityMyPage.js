@@ -90,6 +90,7 @@ function MunicipalityMyPage() {
   const { currentMunicipality } = useContext(AuthContext)
   const id = currentMunicipality.id
   const [projects, setProjects] = useState([])
+  const [allProjects, setAllProjects] = useState([])
   const query = useLocation().search
 
   useEffect(async () => {
@@ -100,6 +101,12 @@ function MunicipalityMyPage() {
     console.log(res.data)
     setProjects(res.data)
   }, [query])
+
+  useEffect(async () => {
+    let searchQuery = `?municipality_id=${id}`
+    const res = await searchProjects(searchQuery)
+    setAllProjects(res.data)
+  }, [])
 
   return (
     <AllContents>
@@ -118,14 +125,20 @@ function MunicipalityMyPage() {
             <Row href="#">
               <Status>入札受付中</Status>
               <Count>
-                <Number>100</Number> 件
+                <Number>
+                  {allProjects.filter(project => !project.hasSuccess).length}
+                </Number>
+                {" 件"}
               </Count>
             </Row>
 
             <Row href="#">
               <Status>落札決定済み</Status>
               <Count>
-                <Number>100</Number> 件
+                <Number>
+                  {allProjects.filter(project => project.hasSuccess).length}
+                </Number>
+                {" 件"}
               </Count>
             </Row>
           </StatusBox>
