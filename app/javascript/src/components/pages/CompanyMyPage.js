@@ -90,6 +90,7 @@ function CompanyMyPage() {
   const { currentCompany } = useContext(AuthContext)
   const id = currentCompany.id
   const [projects, setProjects] = useState([])
+  const [allProjects, setAllProjects] = useState([])
   const query = useLocation().search
 
   useEffect(async () => {
@@ -97,6 +98,12 @@ function CompanyMyPage() {
     const bidProjects = res.data.filter(project => project.bids.map(bid => bid.companyId).includes(currentCompany.id))
     setProjects(bidProjects)
   }, [query])
+
+  useEffect(async () => {
+    const res = await searchProjects(query)
+    const bidProjects = res.data.filter(project => project.bids.map(bid => bid.companyId).includes(currentCompany.id))
+    setAllProjects(bidProjects)
+  }, [])
 
   return (
     <AllContents>
@@ -110,17 +117,23 @@ function CompanyMyPage() {
           </Buttons>
 
           <StatusBox>
-            <Row href="#">
+            <Row>
               <Status>落札結果待ち</Status>
               <Count>
-                <Number>100</Number> 件
+                <Number>
+                  {allProjects.filter(project => !project.hasSuccess).length}
+                </Number>
+                {" 件"}
               </Count>
             </Row>
 
-            <Row href="#">
+            <Row>
               <Status>落札結果あり</Status>
               <Count>
-                <Number>100</Number> 件
+                <Number>
+                  {allProjects.filter(project => project.hasSuccess).length}
+                </Number>
+                {" 件"}
               </Count>
             </Row>
           </StatusBox>
