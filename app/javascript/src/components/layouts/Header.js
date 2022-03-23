@@ -66,7 +66,7 @@ min-width: 135px;
 height: 100%;
 `
 
-const MyPage = styled.a`
+const MyPage = styled.div`
 color: #0056A6;
 font-size: 15px;
 font-weight: bold;
@@ -127,6 +127,7 @@ cursor: pointer;
 
 function Header() {
   const {
+    loading,
     isMunicipalitySignedIn, setIsMunicipalitySignedIn,
     isCompanySignedIn, setIsCompanySignedIn
   } = useContext(AuthContext)
@@ -209,63 +210,70 @@ function Header() {
         </SearchBox>
       </LogoAndSearch>
 
-      {isMunicipalitySignedIn ? (
-        <>
-          <UserNav>
-            <MyPage href="/municipality/my_page">マイページ</MyPage>
-          </UserNav>
-          <UserNav>
-            <LogOut onClick={handleMunicipalitySignOut}>
-              ログアウト
-            </LogOut>
-          </UserNav>
-        </>
-      ) : isCompanySignedIn ? (
-        <>
-          <UserNav>
-            <MyPage href="/company/my_page">マイページ</MyPage>
-          </UserNav>
-          <UserNav>
-            <LogOut onClick={handleCompanySignOut}>
-              ログアウト
-            </LogOut>
-          </UserNav>
-        </>
-      ) : (
-        <>
-          <UserNav>
-            <MunicipalityNav>
-              自治体の方はコチラ
-            </MunicipalityNav>
-            <Link to="/municipality/sign_up">
-              <SignUpOrIn>
-                会員登録
-              </SignUpOrIn>
-            </Link>
-            <Link to="/municipality/sign_in">
-              <SignUpOrIn>
-                ログイン
-              </SignUpOrIn>
-            </Link>
-          </UserNav>
-    
-          <UserNav>
-            <CompanyNav>
-              企業の方はコチラ
-            </CompanyNav>
-            <Link to="/company/sign_up">
-              <SignUpOrIn>
-                会員登録
-              </SignUpOrIn>
-            </Link>
-            <Link to="/company/sign_in">
-              <SignUpOrIn>
-                ログイン
-              </SignUpOrIn>
-            </Link>
-          </UserNav>
-        </>
-      )}
+      {loading ? (<></>) : (
+        isMunicipalitySignedIn ? (
+          <>
+            <UserNav>
+              <Link to="/municipality/my_page">
+                <MyPage>マイページ</MyPage>
+              </Link>
+            </UserNav>
+            <UserNav>
+              <LogOut onClick={handleMunicipalitySignOut}>
+                ログアウト
+              </LogOut>
+            </UserNav>
+          </>
+        ) : isCompanySignedIn ? (
+          <>
+            <UserNav>
+              <Link to="/company/my_page">
+                <MyPage>マイページ</MyPage>
+              </Link>
+            </UserNav>
+            <UserNav>
+              <LogOut onClick={handleCompanySignOut}>
+                ログアウト
+              </LogOut>
+            </UserNav>
+          </>
+        ) : (
+          <>
+            <UserNav>
+              <MunicipalityNav>
+                自治体の方はコチラ
+              </MunicipalityNav>
+              <Link to="/municipality/sign_up">
+                <SignUpOrIn>
+                  会員登録
+                </SignUpOrIn>
+              </Link>
+              <Link to="/municipality/sign_in">
+                <SignUpOrIn>
+                  ログイン
+                </SignUpOrIn>
+              </Link>
+            </UserNav>
+      
+            <UserNav>
+              <CompanyNav>
+                企業の方はコチラ
+              </CompanyNav>
+              <Link to="/company/sign_up">
+                <SignUpOrIn>
+                  会員登録
+                </SignUpOrIn>
+              </Link>
+              <Link to="/company/sign_in">
+                <SignUpOrIn>
+                  ログイン
+                </SignUpOrIn>
+              </Link>
+            </UserNav>
+          </>
+        )
+      )
+      }
 
     </Navbar>
   )
