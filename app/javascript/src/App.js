@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Header from './components/layouts/Header'
@@ -80,6 +80,20 @@ function App() {
     handleGetCurrentCompany()
   }, [setCurrentCompany])
 
+  // 自治体が認証済みかどうかでルーティングを決定
+  // 未認証だった場合は「/municipality/sign_in」ページに促す
+  const MunicipalityPrivate = ({ children }) => {
+    if (!loading) {
+      if (isMunicipalitySignedIn) {
+        return children
+      } else {
+        return <Navigate to="/municipality/sign_in" />
+      }
+    } else {
+      return <></>
+    }
+  }
+
   return (
     <>
       <AuthContext.Provider value={{
@@ -96,15 +110,29 @@ function App() {
           <Route exact path="/municipality/sign_in" element={<MunicipalitySignIn />} />
           <Route exact path="/company/sign_up" element={<CompanySignUp />} />
           <Route exact path="/company/sign_in" element={<CompanySignIn />} />
-          <Route exact path="/municipality/my_page" element={<MunicipalityMyPage />} />
-          <Route exact path="/company/my_page" element={<CompanyMyPage />} />
-          <Route exact path="/projects/new" element={<NewProject />} />
           <Route exact path="/projects/search" element={<SearchProjects />} />
           <Route exact path="/municipality/:id" element={<MunicipalityShow />} />
           <Route exact path="/company/:id" element={<CompanyShow />} />
           <Route exact path="/projects/:id" element={<ShowProject />} />
+
+          <Route exact path="/municipality/my_page" element={
+            <MunicipalityPrivate>
+              <MunicipalityMyPage />
+            </MunicipalityPrivate>
+          } />
+          <Route exact path="/projects/new" element={
+            <MunicipalityPrivate>
+              <NewProject />
+            </MunicipalityPrivate>
+          } />
+          <Route exact path="/projects/:project_id/successes/new" element={
+            <MunicipalityPrivate>
+              <NewSuccess />
+            </MunicipalityPrivate>
+          } />
+
+          <Route exact path="/company/my_page" element={<CompanyMyPage />} />
           <Route exact path="/projects/:project_id/bids/new" element={<NewBid />} />
-          <Route exact path="/projects/:project_id/successes/new" element={<NewSuccess />} />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
