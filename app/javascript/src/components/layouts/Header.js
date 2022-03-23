@@ -66,7 +66,7 @@ min-width: 135px;
 height: 100%;
 `
 
-const MyPage = styled.a`
+const MyPage = styled.div`
 color: #0056A6;
 font-size: 15px;
 font-weight: bold;
@@ -212,7 +212,9 @@ function Header() {
       {isMunicipalitySignedIn ? (
         <>
           <UserNav>
-            <MyPage href="/municipality/my_page">マイページ</MyPage>
+            <Link to="/municipality/my_page">
+              <MyPage>マイページ</MyPage>
+            </Link>
           </UserNav>
           <UserNav>
             <LogOut onClick={handleMunicipalitySignOut}>
@@ -223,7 +225,9 @@ function Header() {
       ) : isCompanySignedIn ? (
         <>
           <UserNav>
-            <MyPage href="/company/my_page">マイページ</MyPage>
+            <Link to="/company/my_page">
+              <MyPage>マイページ</MyPage>
+            </Link>
           </UserNav>
           <UserNav>
             <LogOut onClick={handleCompanySignOut}>
