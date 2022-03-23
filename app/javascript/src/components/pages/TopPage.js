@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import TopImg from '../../images/top.png'
+import PCImage from '../../images/PCImage.png'
 import styled from 'styled-components'
 
 import { getRecentProjects } from "../../lib/api/project"
@@ -70,8 +71,7 @@ padding: 50px;
 display: flex;
 `
 
-const PCImage = styled.div`
-background: gray;
+const PCImageBox = styled.img`
 width: 500px;
 height: 300px;
 margin-right: 50px;
@@ -193,7 +193,7 @@ function TopPage() {
       </TopContents>
 
       <BottomContents>
-        <PCImage></PCImage>
+        <PCImageBox src={PCImage}  alt="トップ画像" />
         <Contact>
           <Copy>
             自治体様・企業様へ<br/>
