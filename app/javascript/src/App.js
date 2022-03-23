@@ -94,6 +94,20 @@ function App() {
     }
   }
 
+  // 自治体が認証済みかどうかでルーティングを決定
+  // 未認証だった場合は「/company/sign_in」ページに促す
+  const CompanyPrivate = ({ children }) => {
+    if (!loading) {
+      if (isCompanySignedIn) {
+        return children
+      } else {
+        return <Navigate to="/company/sign_in" />
+      }
+    } else {
+      return <></>
+    }
+  }
+
   return (
     <>
       <AuthContext.Provider value={{
@@ -131,8 +145,16 @@ function App() {
             </MunicipalityPrivate>
           } />
 
-          <Route exact path="/company/my_page" element={<CompanyMyPage />} />
-          <Route exact path="/projects/:project_id/bids/new" element={<NewBid />} />
+          <Route exact path="/company/my_page" element={
+            <CompanyPrivate>
+              <CompanyMyPage />
+            </CompanyPrivate>
+          } />
+          <Route exact path="/projects/:project_id/bids/new" element={
+            <CompanyPrivate>
+              <NewBid />
+            </CompanyPrivate>
+          } />
         </Routes>
         <Footer/>
       </AuthContext.Provider>
