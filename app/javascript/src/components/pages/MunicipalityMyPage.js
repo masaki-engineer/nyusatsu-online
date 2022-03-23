@@ -42,7 +42,7 @@ padding-left: 50px;
 display: flex;
 `
 
-const Row = styled.a`
+const Row = styled.div`
 width: 200px;
 padding: 20px;
 margin: auto 0;
@@ -111,18 +111,20 @@ function MunicipalityMyPage() {
   return (
     <AllContents>
       <Header>
-        <UnderlineText text={'◯◯市　マイページ'} />
+        <UnderlineText text={`${currentMunicipality.name}　マイページ`} />
         <ControlBox>
 
           <Buttons>
             <Link to="/projects/new">
               <Button text={"案件登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
+            <Link to={`/municipality/${id}`}>
             <Button text={"自治体トップページ"} background={"#0156a5"} hover={"#0674da"}/>
+            </Link>
           </Buttons>
 
           <StatusBox>
-            <Row href="#">
+            <Row>
               <Status>入札受付中</Status>
               <Count>
                 <Number>
@@ -132,8 +134,8 @@ function MunicipalityMyPage() {
               </Count>
             </Row>
 
-            <Row href="#">
-              <Status>落札決定済み</Status>
+            <Row>
+              <Status>落札結果あり</Status>
               <Count>
                 <Number>
                   {allProjects.filter(project => project.hasSuccess).length}
