@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { AiFillRightCircle } from 'react-icons/ai'
 
@@ -26,7 +27,7 @@ padding-left: 30px;
 display: flex;
 `
 
-const Prefecture = styled.a`
+const Prefecture = styled.div`
 margin: 15px 20px auto 0;
 display: flex;
 :hover {
@@ -54,14 +55,16 @@ function PrefList(props) {
       <Prefectures>
         {props.prefectures.map(val => {
           return (
-            <Prefecture href={`/projects/search?prefecture_id=${ Object.keys(val)[0] }`}>
-              <RightSign>
-                <AiFillRightCircle/>
-              </RightSign>
-              <Name>
-                {val[ Object.keys(val)[0] ]}
-              </Name>
-            </Prefecture>
+            <Link to={`/projects/search?prefecture_id=${ Object.keys(val)[0] }`}>
+              <Prefecture>
+                <RightSign>
+                  <AiFillRightCircle/>
+                </RightSign>
+                <Name>
+                  {val[ Object.keys(val)[0] ]}
+                </Name>
+              </Prefecture>
+            </Link>
           )
         })}
       </Prefectures>
