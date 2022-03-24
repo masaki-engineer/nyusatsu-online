@@ -1,24 +1,89 @@
-# README
+# アプリケーション名
+入札オンライン
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
+入札の案件登録から落札までを一貫して行うことができます。
 
-Things you may want to cover:
+# URL
+[http://175.41.230.223/](http://175.41.230.223/)
 
-* Ruby version
+# テスト用アカウント
+### 自治体アカウント
+- メールアドレス : test1@example.com
+- パスワード : password
+### 企業アカウント
+- メールアドレス : test1@example.com
+- パスワード : password
 
-* System dependencies
+※自治体と企業でログイン画面が異なるのでご注意ください。
 
-* Configuration
+# 利用方法
+## 全ユーザー共通
+### 案件を探す
+1. ヘッダーの検索ボタン、トップページのリンク等から案件検索画面に進む
+2. サイドバーの検索フォームを使い案件を絞り込む
+3. 案件のボックスをクリックすると案件の詳細画面に進むことができる
 
-* Database creation
+## 自治体アカウント
+### 案件登録
+1. ログイン後ヘッダーからマイページに進む
+2. 「案件登録」ボタンから案件登録画面に進む
+3. 案件の内容（案件名、カテゴリー、概要、入札参加資格、入札日 等々）を入力し登録する
 
-* Database initialization
+### 落札企業の決定
+1. 案件詳細画面に進む
+2. 「落札企業を決定する」ボタンから落札企業決定画面に進む
+3. 表示されている入札一覧から1つを選択し決定する
 
-* How to run the test suite
+## 企業アカウント
+### 入札
+1. 案件詳細画面の「入札する」ボタンから入札画面に進む
+2. 入札を担当する部署名、担当者名、電話番号、メールアドレスを入力する
+3. 最後に入札価格を入力し、入札を登録する
 
-* Services (job queues, cache servers, search engines, etc.)
+# 制作背景
+前職で入札そのものに非効率性を感じていたことが、このアプリケーションを制作した背景です。特に問題だと感じた点は、「入札情報を探す→入札する」の流れが一本化されていない点です。
 
-* Deployment instructions
+実際ほとんどの企業が、入札情報の収集サイトで入札情報を見つけた後に各自治体の入札ポータルサイトもしくは郵送手続き等のフォーマットに合わせて入札を行っております。私は、入札情報の収集先で直接入札まで行えるといいのになと常々思っておりました。
 
-* ...
+このアプリケーションでは「全ての入札案件のフォーマットを統一」することでこの問題を解決します。また、これによって自治体は他の自治体の成功事例などを真似しやすくなり、公共ビジネスの活性化にも繋がると考えております。
+
+# 現実的な課題
+実際にこのアプリケーションが広く利用されるためには下記のような課題をクリアしないといけません。
+- 自治体に導入してもらうために、あらゆる入札形態に対応する
+- 安全性を高めるために、第三者による攻撃を防ぐ等のセキュリティを付ける
+
+# 洗い出した要件
+下記スプレッドシートに記載しております。
+
+[https://docs.google.com/spreadsheets/d/1Tqt81-ykoANZohVqSqZ_E3z9YoHbkeW65NnW6bEnbKc/edit](https://docs.google.com/spreadsheets/d/1Tqt81-ykoANZohVqSqZ_E3z9YoHbkeW65NnW6bEnbKc/edit)
+
+# 今後実装予定の機能
+- 案件複製機能
+- 検索キーワード保存機能
+- ファイル添付機能
+
+# データベース設計
+![tables](https://user-images.githubusercontent.com/98379971/159829940-6ed7f175-ce5c-4eb9-a51c-f40ea52289f2.png)
+
+# 画面遷移図
+![screen_transition](https://user-images.githubusercontent.com/98379971/159830629-fc175e90-991d-40da-983e-3db61acdcb59.png)
+
+# 開発環境
+- React.js
+- Ruby on Rails
+- AWS
+- VScode
+
+# ローカルでの動作方法
+以下のコマンドを順に実行
+```
+% git clone https://github.com/masaki-engineer/nyusatsu-online.git
+% cd nyusatsu-online
+% bundle install
+% yarn add react-router-dom axios styled-components react-icons
+```
+
+# 工夫したポイント
+- 画面のデザイン
+- 検索画面への積極的な誘導（主にトップページ）
