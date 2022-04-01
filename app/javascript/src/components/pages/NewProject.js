@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'
-import { useNavigate } from "react-router-dom"
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate, useLocation } from "react-router-dom"
 import styled from 'styled-components'
 
 import { AuthContext } from "../../App"
-import { createProject } from "../../lib/api/project"
+import { createProject, getProjectById } from "../../lib/api/project"
 import UnderlineText from '../../components/utils/UnderlineText'
 import ErrorMessage from '../../components/utils/ErrorMessage'
 import categories from '../../lib/data/categories'
@@ -102,6 +102,8 @@ transition: 0.5s;
 function NewProject() {
   const { currentMunicipality } = useContext(AuthContext)
   const navigate = useNavigate()
+  const query = useLocation().search
+  const projectId = new URLSearchParams(query).get("project_id")
   const [form, setForm] = useState({
     name: "",
     categoryId: 0,
@@ -116,6 +118,26 @@ function NewProject() {
     municipalityId: currentMunicipality.id
   })
   const [errorMessageOpen, setErrorMessageOpen] = useState(false)
+
+  useEffect(async () => {
+    if (projectId !== null) {
+      const res = await getProjectById(projectId)
+      const project = res.data
+      setForm({
+        name: project.name,
+        categoryId: project.categoryId,
+        overview: project.overview,
+        qualification: project.qualification,
+        bidDate: "",
+        repDivision: "",
+        repPerson: "",
+        phoneNumber: "",
+        email: "",
+        url: "",
+        municipalityId: currentMunicipality.id
+      })
+    }
+  }, [])
 
   const handleChange = (input) => e => {
     setForm({...form, [input] : e.target.value})
