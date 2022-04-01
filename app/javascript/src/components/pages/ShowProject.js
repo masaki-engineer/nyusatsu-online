@@ -286,7 +286,7 @@ function ShowProject() {
               )
             )}
 
-            <Link to={`/projects/new?projectId=${id}`}>
+            <Link to={`/projects/new?project_id=${id}`}>
               <Button text={"複製して案件を登録"} background={"#0156a5"} hover={"#0674da"}/>
             </Link>
 
